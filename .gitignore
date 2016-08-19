@@ -2,3 +2,4 @@
 /logs/*
 /composer.phar
 /public/res/
+/node_modules/
