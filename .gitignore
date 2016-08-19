@@ -4,3 +4,6 @@
 /public/res/
 /node_modules/
 /bower_components/
+/.sass-cache/
+/public/assets/*.js
+/public/assets/*.css
