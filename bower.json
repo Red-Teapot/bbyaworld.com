@@ -1,0 +1,22 @@
+{
+  "name": "bbya-website",
+  "description": "BByaWorld website",
+  "main": "index.js",
+  "authors": [
+    "RedTeapot <redmaster.mna@gmail.com>"
+  ],
+  "license": "None",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
