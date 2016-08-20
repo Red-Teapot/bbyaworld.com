@@ -78,7 +78,7 @@ $settings = [
     ],
 ];
 
-if(file_exists(__DIR__ . '/settings-local.php'))
-    $settings = array_merge_recursive_distinct($settings, require(__DIR__ . '/settings-local.php'));
+// Import and merge local configuration
+$settings = array_merge_recursive_distinct($settings, require(__DIR__ . '/settings-local.php'));
 
 return $settings;
