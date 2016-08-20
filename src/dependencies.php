@@ -3,9 +3,9 @@ $container = $app->getContainer();
 
 // view renderer
 $container['renderer'] = function ($c) {
-    $renderer = new \Slim\Views\Twig('../templates', [
+    $renderer = new \Slim\Views\Twig($c['settings']['renderer']['template_path'], [
         //'cache' => '../template-cache',
-        'cache' => false,
+        'cache' => $c['settings']['renderer']['cache'],
     ]);
     $renderer->addExtension(new \Slim\Views\TwigExtension(
         $c['router'],

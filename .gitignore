@@ -1,12 +1,23 @@
+# Composer
 /vendor/
-/logs/*
 /composer.phar
-/public/res/
+
+# Node, bower, sass
 /node_modules/
 /bower_components/
 /.sass-cache/
+
+# Public files
 /public/assets/*.js
 /public/assets/*.css
 /public/fonts/*
-/temp/
-/template-cache/
+
+# Local settings
+/src/settings-local.php
+
+# Runtime and temp
+/temp/**/*.*
+/temp/*.*
+
+/runtime/*.*
+/runtime/**/*.*
