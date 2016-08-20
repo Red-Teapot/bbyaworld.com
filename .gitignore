@@ -8,3 +8,4 @@
 /public/assets/*.js
 /public/assets/*.css
 /temp/
+/template-cache/
