@@ -1,0 +1,78 @@
+<div class="header">
+
+    {% include 'components/navbar.html' %}
+
+    <div class="shadow"></div>
+
+    <div class="social-likes">
+        <div class="facebook" title="Поделиться ссылкой на Facebook">Facebook</div>
+        <div class="vkontakte" title="Поделиться ссылкой во Вконтакте">ВКонтакте</div>
+        <div class="plusone" title="Поделиться ссылкой в Google+">Google+</div>
+    </div>
+
+    <div id="headCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#headCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#headCarousel" data-slide-to="1"></li>
+            <li data-target="#headCarousel" data-slide-to="2"></li>
+            <li data-target="#headCarousel" data-slide-to="3"></li>
+            <li data-target="#headCarousel" data-slide-to="4"></li>
+        </ol>
+        <div class="carousel-background">
+            <img src="/assets/images/slider/main.jpg" />
+        </div>
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Лучший лицензионный сервер майнкрафт с выживанием</h1>
+                        <p>BBya World предложит тебе серьёзное выживание. Только на нашем сервере minecraft самые невероятные идеи и нестандартная реализация! Попробуйте наш сервер и вы останетесь с нами навсегда!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Интересные квесты и ивенты</h1>
+                        <p>Будь первым, обойди всех на поворотах, стань победителем! Тебя ждут самые разнообразные задания, дух соперничества и командная работа!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Экономика, которой ты еще не видел</h1>
+                        <p>Аукционы, государственные заказы, торговые отношения между игроками, собственные счета - всё это ты можешь попробовать у нас!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Продвинутый PvP</h1>
+                        <p>4 единственных в своем роде PvP гильдии для самых беспощадных и кровожадных игроков!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Развитая система кланов</h1>
+                        <p>Мы сильны единством. Ты можешь присоединиться к существующему клану или создать свой!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="left carousel-control" href="#headCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Назад</span>
+        </a>
+        <a class="right carousel-control" href="#headCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Далее</span>
+        </a>
+    </div>
+
+    {% include 'components/statusbar.html' %}
+
+</div>
