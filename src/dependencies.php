@@ -1,12 +1,18 @@
 <?php
-// DIC configuration
-
 $container = $app->getContainer();
 
 // view renderer
 $container['renderer'] = function ($c) {
-    $settings = $c->get('settings')['renderer'];
-    return new Slim\Views\PhpRenderer($settings['template_path']);
+    $renderer = new \Slim\Views\Twig('../templates', [
+        //'cache' => '../template-cache',
+        'cache' => false,
+    ]);
+    $renderer->addExtension(new \Slim\Views\TwigExtension(
+        $c['router'],
+        $c['request']->getUri()
+    ));
+
+    return $renderer;
 };
 
 // monolog
@@ -27,3 +33,4 @@ $container['db'] = function($c) {
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     return $pdo;
 };
+
