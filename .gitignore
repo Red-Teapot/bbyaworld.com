@@ -7,5 +7,6 @@
 /.sass-cache/
 /public/assets/*.js
 /public/assets/*.css
+/public/fonts/*
 /temp/
 /template-cache/

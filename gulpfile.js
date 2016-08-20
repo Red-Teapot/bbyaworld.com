@@ -39,6 +39,8 @@ var c = {
     resultDir: 'public/assets/',
     resultCSSDir: 'public/assets/',
     resultJSDir: 'public/assets/',
+
+    fontsResultDir: 'public/fonts/',
 };
 
 gulp.task('clean-temp', function() {
@@ -66,6 +68,11 @@ gulp.task('build-bower-assets-js', function() {
     return gulp.src(minifiedJS)
         .pipe(concat(c.tempVendorJS))
         .pipe(gulp.dest(c.tempJSDir));
+});
+
+gulp.task('copy-bootstrap-font', function() {
+    return gulp.src(['bower_components/bootstrap/dist/fonts/*.*'])
+        .pipe(gulp.dest(c.fontsResultDir));
 });
 
 gulp.task('sass', function() {
@@ -114,7 +121,7 @@ gulp.task('build-assets', ['sass', 'js']);
 
 gulp.task('default', function(cb) {
     runSequence(['clean-temp', 'clean-assets'],
-                ['build-bower-assets', 'build-assets', 'third-party'],
+                ['build-bower-assets', 'build-assets', 'third-party', 'copy-bootstrap-font'],
                 ['merge-css', 'merge-js'],
                cb);
 });
