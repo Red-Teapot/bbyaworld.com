@@ -7,7 +7,7 @@
     {% include 'components/header.html' %}
 
     <div class="container content rules">
-        <h1>Свод законов или правила игры на нашем сервере</h1>
+        <h1>{{ title }}</h1>
 
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             <div class="panel panel-default">
@@ -285,6 +285,8 @@
             </div>
         </div>
     </div>
+
+    {% include 'components/footer.html' %}
 {% endblock %}
 {% block after_html %}
 <script>
