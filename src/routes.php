@@ -1,6 +1,6 @@
 <?php
 // Routes
 
-$app->get('/', function ($request, $response, $args) {
+$app->get('/[index.php]', function ($request, $response, $args) {
     return $this->renderer->render($response, 'index.html', []);
 });
