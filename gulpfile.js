@@ -8,29 +8,28 @@ var concat = require('gulp-concat');
 var sass = require('gulp-ruby-sass');
 var del = require('del');
 var runSequence = require('run-sequence');
-var moment = require('moment');
 var browserSync = require('browser-sync');
 
 var c = {
     tempDir: 'temp/',
-    tempCSSDir: this.tempDir + 'css/',
-    tempJSDir: this.tempDie + 'js/',
+    tempCSSDir: 'temp/css/',
+    tempJSDir: 'temp/js/',
 
     tempVendorCSS: 'vendor.css',
     tempVendorJS: 'vendor.js',
 
     sassDir: 'src/sass/',
     sassMainFile: 'src/sass/main.scss',
-    tempMainCSS: 'css/main.css',
+    tempMainCSS: 'main.css',
 
     jsDir: 'src/js/',
-    tempMainJS: 'js/main.js',
+    tempMainJS: 'main.js',
 
     srcDir: 'src/',
     templateDir: 'templates/',
 
-    resultCSS: 'main.' + moment().unix() + '.css',
-    resultJS: 'main.' + moment().unix() + '.js',
+    resultCSS: 'main.css',
+    resultJS: 'main.js',
 
     resultDir: 'public/assets/',
     resultCSSDir: 'public/assets/',
