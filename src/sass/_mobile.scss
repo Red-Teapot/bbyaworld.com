@@ -1,0 +1,228 @@
+.header {
+    height: auto;
+}
+
+.navbar {
+    background-color: #202020;
+    border: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    .navbar-brand {
+        border: none;
+        font-weight: bold;
+        font-size: 16pt;
+        color: #fff;
+
+        &:hover, &:active, &:focus {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: none;
+            padding-bottom: 15px;
+        }
+    }
+    .navbar-collapse {
+        border: none;
+        box-shadow: none;
+    }
+    .navbar-toggle {
+        .icon-bar {
+            background-color: #fff;
+        }
+    }
+    .navbar-nav a {
+        border: none;
+        font-weight: lighter;
+        font-size: 16pt;
+        color: #fff;
+
+        &:hover, &:active, &:focus {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: none;
+        }
+    }
+    .dropdown.open > .dropdown-toggle {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #fff;
+    }
+    .dropdown-menu {
+        width: 100%;
+        border: none;
+        box-shadow: none;
+
+        a {
+            color: #fff;
+
+            &:hover, &:active, &:focus {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+        }
+    }
+
+    .li-chart {
+        display: none;
+    }
+}
+
+$statusbar-line-height: 60px;
+$statusbar-height: $statusbar-line-height * 3;
+
+.carousel,
+.rules .carousel {
+    $carousel-height: 500px;
+    $menu-height: 50px;
+
+    height: $carousel-height;
+    top: $menu-height;
+
+    .carousel-inner {
+        top: 0;
+        height: $carousel-height;
+        bottom: $statusbar-height + $menu-height;
+
+        .item {
+            height: $carousel-height;
+        }
+    }
+    .carousel-indicators {
+        bottom: 10px;
+    }
+    .carousel-control {
+        bottom: 0;
+    }
+
+    .carousel-caption {
+        h1 {
+            font-size: 16pt;
+        }
+        p {
+            font-size: 12pt;
+        }
+    }
+}
+
+.statusbar {
+    $statusbar-font-size: 14pt;
+
+    height: $statusbar-height;
+    text-align: center;
+    margin-top: 50px;
+
+    &.affix {
+        position: relative;
+        top: 0;
+    }
+
+    .status {
+        line-height: $statusbar-line-height;
+        font-size: $statusbar-font-size;
+        display: block;
+    }
+
+    .play-button {
+        display: inline-block;
+        position: relative;
+        width: 100%;
+        height: $statusbar-line-height;
+        line-height: $statusbar-line-height;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .online-players {
+        line-height: $statusbar-line-height;
+        float: none;
+
+        .btn {
+            font-size: $statusbar-font-size;
+            height: $statusbar-line-height;
+
+            .badge {
+                font-size: $statusbar-font-size;
+            }
+        }
+
+        .dropdown-menu {
+            .item {
+                font-size: $statusbar-font-size * 0.8;
+            }
+        }
+    }
+}
+
+.content {
+    color: #000;
+    font-size: 12pt;
+    font-weight: lighter;
+    line-height: 1.5;
+    text-align: justify;
+
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: normal;
+        margin: 20px 0;
+        text-align: left;
+    }
+    h1 {
+        font-size: 24pt;
+    }
+    h2 {
+        font-size: 18pt;
+    }
+    h3 {
+        font-size: 16pt;
+    }
+    h4 {
+        font-size: 14pt;
+    }
+    h5 {
+        font-size: 12pt;
+    }
+    h6 {
+        font-size: 10pt;
+    }
+
+    li, p {
+        margin: 10px 0;
+    }
+
+    em {
+        font-weight: normal;
+    }
+
+    .important {
+        border-left: 6px solid #f55;
+        padding-left: 20px;
+
+        &:before {
+            content: "Важно:";
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    }
+
+    .note {
+        border-left: 6px solid rgba(0, 0, 0, 0.3);
+        padding-left: 20px;
+
+        &:before {
+            content: "Примечание:";
+            font-weight: normal;
+            margin-right: 10px;
+        }
+    }
+
+    small {
+        font-size: 80%;
+        opacity: 0.5;
+    }
+
+    a {
+        font-weight: normal;
+    }
+    .block-heading {
+        font-size: 20pt;
+    }
+}

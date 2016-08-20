@@ -1,0 +1,4 @@
+@import 'desktop';
+@media screen and (max-width: 769px) {
+    @import 'mobile';
+}
