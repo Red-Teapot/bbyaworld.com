@@ -15,20 +15,20 @@ var c = {
     tempCSSDir: 'temp/css/',
     tempJSDir: 'temp/js/',
 
-    tempVendorCSS: 'vendor.css',
-    tempVendorJS: 'vendor.js',
+    tempVendorCSS: '1vendor.css',
+    tempVendorJS: '1vendor.js',
 
-    tempThirdpartyCSS: 'thirdparty.css',
-    tempThirdpartyJS: 'thirdparty.js',
+    tempThirdpartyCSS: '2thirdparty.css',
+    tempThirdpartyJS: '2thirdparty.js',
 
     thirdpartyCSSDir: 'thirdparty/css/',
     thirdpartyJSDir: 'thirdparty/js/',
 
     sassMainFile: 'src/sass/main.scss',
-    tempMainCSS: 'main.css',
+    tempMainCSS: '3main.css',
 
     jsDir: 'src/js/',
-    tempMainJS: 'main.js',
+    tempMainJS: '3main.js',
 
     srcDir: 'src/',
     templateDir: 'templates/',
