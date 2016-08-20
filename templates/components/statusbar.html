@@ -7,12 +7,18 @@
         <div class="dropup online-players">
             <button class="btn dropdown-toggle" type="button" id="playersDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Игроки онлайн<span class="badge">
-                1
+                {{ players_online|length }}
                 </span>
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="playersDropdown">
-                <li class="item"><img src="https://minotar.net/helm/redteapot/32" />RedTeapot</li>
+                {% if players_online|length > 0 %}
+                    {% for player in players_online %}
+                        <li class="item"><img src="https://minotar.net/helm/{{ player }}/32" />{{ player }}</li>
+                    {% endfor %}
+                {% else %}
+                    <li class="item">Игроков нет</li>
+                {% endif %}
             </ul>
         </div>
     </div>
