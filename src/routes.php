@@ -10,3 +10,7 @@ $app->get('/map[.php]', function($request, $response, $args) {
         'map_args' => $request->getUri()->getQuery(),
     ]);
 });
+
+$app->get('/rules[.php]', function($request, $response, $args) {
+    return $this->renderer->render($response, 'rules.html', []);
+});
