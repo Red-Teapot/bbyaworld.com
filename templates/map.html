@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% set class = 'map' %}
+{% set title = 'Карта' %}
+
+{% block content %}
+    {% include 'components/navbar.html' %}
+
+    <iframe class="map-frame" id="map-frame" src="http://play.bbyaworld.com:28565/?{{ map_args }}"></iframe>
+
+    {% include 'components/statusbar.html' %}
+{% endblock %}
