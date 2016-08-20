@@ -18,6 +18,12 @@ var c = {
     tempVendorCSS: 'vendor.css',
     tempVendorJS: 'vendor.js',
 
+    tempThirdpartyCSS: 'thirdparty.css',
+    tempThirdpartyJS: 'thirdparty.js',
+
+    thirdpartyCSSDir: 'thirdparty/css/',
+    thirdpartyJSDir: 'thirdparty/js/',
+
     sassDir: 'src/sass/',
     sassMainFile: 'src/sass/main.scss',
     tempMainCSS: 'main.css',
@@ -75,6 +81,20 @@ gulp.task('js', function() {
         .pipe(gulp.dest(c.tempJSDir));
 });
 
+gulp.task('third-party-css', function() {
+    return gulp.src([c.thirdpartyCSSDir + '*.css', c.thirdpartyCSSDir + '**/*.css'])
+        .pipe(concat(c.tempThirdpartyCSS))
+        .pipe(gulp.dest(c.tempCSSDir));
+});
+
+gulp.task('third-party-js', function() {
+    return gulp.src([c.thirdpartyJSDir + '*.js', c.thirdpartyJSDir + '**/*.js'])
+        .pipe(concat(c.tempThirdpartyJS))
+        .pipe(gulp.dest(c.tempJSDir));
+});
+
+gulp.task('third-party', ['third-party-css', 'third-party-js']);
+
 gulp.task('merge-css', function() {
     return gulp.src(c.tempCSSDir + '*.css')
         .pipe(cleanCSS({keepSpecialComments: 0}))
@@ -95,7 +115,7 @@ gulp.task('build-assets', ['sass', 'js']);
 
 gulp.task('default', function(cb) {
     runSequence(['clean-temp', 'clean-assets'],
-                ['build-bower-assets', 'build-assets'],
+                ['build-bower-assets', 'build-assets', 'third-party'],
                 ['merge-css', 'merge-js'],
                cb);
 });
@@ -126,5 +146,5 @@ gulp.task('watch', function() {
     gulp.watch([c.sassDir + '*.*', c.sassDir + '**/*.*'], ['updateCSS']);
     gulp.watch([c.jsDir + '*.*', c.jsDir + '**/*.*'], ['updateJS']);
     gulp.watch([c.srcDir + '*.php', c.srcDir + '**/*.php',
-                c.templateDir + '*.phtml', c.templateDir + '**/*.phtml',]).on('change', browserSync.reload);
+                c.templateDir + '*.html', c.templateDir + '**/*.phtml',]).on('change', browserSync.reload);
 });
