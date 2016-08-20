@@ -70,6 +70,7 @@ gulp.task('build-bower-assets-js', function() {
 
 gulp.task('sass', function() {
     return sass(c.sassMainFile, {style: 'compressed'})
+        .pipe(concat(c.tempMainCSS))
         .pipe(gulp.dest(c.tempCSSDir));
 });
 
