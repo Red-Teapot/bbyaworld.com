@@ -16,8 +16,5 @@
 /src/settings-local.php
 
 # Runtime and temp
-/temp/**/*.*
-/temp/*.*
-
-/runtime/*.*
-/runtime/**/*.*
+/temp/
+/runtime/
