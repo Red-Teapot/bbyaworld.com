@@ -1,6 +1,6 @@
 <div class="statusbar" id="statusbar">
     <div class="container">
-        <p class="status"><span class="nowrap" data-toggle="tooltip" data-placement="right" title="Адрес сервера">play.bbyaworld.com<span class="server-status <?php if($result == false) echo 'off'; else echo 'on'; ?>"></span></span></p>
+        <p class="status"><span class="nowrap" data-toggle="tooltip" data-placement="right" title="Адрес сервера">play.bbyaworld.com<span class="server-status {{ players_online == false ? 'off' : 'on' }}"></span></span></p>
         <p class="play-button">
             <a href="http://forum.bbyaworld.com/index.php?/topic/2-bbya-world-informatciia-o-servere-i-pravila-igry/" class="btn btn-primary btn-lg">Хочу играть!</a>
         </p>

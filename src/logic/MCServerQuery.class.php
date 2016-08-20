@@ -42,7 +42,8 @@ class MCServerQuery {
         $sock = stream_socket_client("udp://" . $address . ":" . $port, $errno, $errstr, $timeout);
 
         if(!$sock) {
-            $this->log->error("Error creating socket: " . $errno . ": " . $errstr);
+            if($this->log)
+                $this->log->error("Error creating socket: " . $errno . ": " . $errstr);
             return false;
         }
         if($this->log)
@@ -63,7 +64,8 @@ class MCServerQuery {
         $response = fread($sock, 256);
         $metadata = stream_get_meta_data($sock);
         if($metadata["timed_out"]) {
-            $this->log->error("Reading timed out");
+            if($this->log)
+                $this->log->error("Reading timed out");
             return false;
         }
 
