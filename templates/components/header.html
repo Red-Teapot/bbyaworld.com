@@ -2,8 +2,6 @@
 
     {% include 'components/navbar.html' %}
 
-    <div class="shadow"></div>
-
     <div class="social-likes">
         <div class="facebook" title="Поделиться ссылкой на Facebook">Facebook</div>
         <div class="vkontakte" title="Поделиться ссылкой во Вконтакте">ВКонтакте</div>
@@ -19,7 +17,10 @@
             <li data-target="#headCarousel" data-slide-to="4"></li>
         </ol>
         <div class="carousel-background">
-            <img src="/assets/images/slider/main.jpg" />
+            <video playsinline autoplay muted loop poster="/assets/images/slider/main.jpg" id="bg_video">
+                <source src="/assets/videos/bg_video.webm" type="video/webm" />
+                <source src="/assets/videos/bg_video.mp4" type="video/mp4" />
+            </video>
         </div>
         <div class="carousel-inner" role="listbox">
             <div class="item active">
