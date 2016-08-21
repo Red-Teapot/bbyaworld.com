@@ -26,7 +26,7 @@
                             <td>{{ loop.index0 + 1 + (current_page - 1) * 50 }}</td>
                             <td><img src="https://minotar.net/helm/{{ player.nickname }}/32" /></td>
                             <td>{{ player.nickname }}</td>
-                            <td>{{ (player.time / 60)|number_format(2, ',', ' ') }} ч</td>
+                            <td>{{ (player.time / 60)|number_format(1, ',', ' ') }} ч</td>
                         </tr>
                     {% endfor %}
                 {% else %}
