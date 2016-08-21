@@ -4,7 +4,7 @@ return [
     'logger' => [
         'name' => 'OnlinePlayerStats',
         'path' => __DIR__ . '/../../../runtime/logs/app.log',
-        'level' => \Monolog\Logger::DEBUG,
+        'level' => \Monolog\Logger::WARNING,
     ],
 
     'server' => [
