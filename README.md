@@ -1,18 +1,10 @@
-# Slim Framework 3 Skeleton Application
+# Description
 
-Use this skeleton application to quickly setup and start working on a new Slim Framework 3 application. This application uses the latest Slim 3 with the PHP-View template renderer. It also uses the Monolog logger.
+This is BByaWorld Minecraft server website source code.
 
-This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
+This project is built using Slim PHP Framework, SASS preprocessor, Twig template engine and Gulp task runner.
 
-## Install the Application
+# License
 
-Run this command from the directory in which you want to install your new Slim Framework application.
-
-    php composer.phar create-project slim/slim-skeleton [my-app-name]
-
-Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
-
-* Point your virtual host document root to your new application's `public/` directory.
-* Ensure `logs/` is web writeable.
-
-That's it! Now go build something cool.
+The content of this project itself is licensed under the [Creative Commons Attribution 3.0 license](http://creativecommons.org/licenses/by/3.0/us/deed.en_US), 
+and the underlying source code used to format and display that content is licensed under the [MIT license](http://opensource.org/licenses/mit-license.php).
