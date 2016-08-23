@@ -47,6 +47,14 @@ $app->get('/contacts[.php]', function($request, $response, $args) {
     ]);
 });
 
+$app->get('/staff_and_vacancies[.php]', function($request, $response, $args) {
+    global $players_online;
+
+    return $this->renderer->render($response, 'staff_and_vacancies.html', [
+        'players_online' => $players_online,
+    ]);
+});
+
 $app->get('/stats[.php]', function($request, $response, $args) {
     global $players_online;
 

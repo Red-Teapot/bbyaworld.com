@@ -1,0 +1,82 @@
+{% set class = 'carousel-narrow' %}
+{% set title = 'Состав и вакансии' %}
+
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include 'components/header.html' %}
+
+    <div class="container content">
+        <h1>{{ title }}</h1>
+
+        <h2>Открытые вакансии</h2>
+        <p>Прямо сейчас у нас есть открытые вакансии:</p>
+        <ul>
+            <li>
+                <strong>Программист</strong>
+                <br />
+                Настройка и оптимизация сервера
+            </li>
+            <hr />
+            <li>
+                <strong>Гейммастер</strong>
+                <br />
+                Выполнение заявок, помощь новичкам
+            </li>
+            <li>
+                <strong>Главный архитектор</strong>
+                <br />
+                Обеспечение высокого уровня эстетичности построек и внешнего вида сервера
+            </li>
+            <li>
+                <strong>Массовик-затейник</strong>
+                <br />
+                Проведение ивентов и межсерверных турниров
+            </li>
+            <li>
+                <strong>Краевед</strong>
+                <br />
+                Развитие Края
+            </li>
+        </ul>
+
+        <h2>Наша администрация</h2>
+        <p>Состав нашей администрации:</p>
+        <ul>
+            <li>
+                <a href="http://forum.bbyaworld.com/index.php?/profile/1-admin/" target="_blank">Admin</a> &mdash; главный администратор
+                <br />
+                <small>Chairman and CEO</small>
+            </li>
+            <li>
+                <a href="http://forum.bbyaworld.com/index.php?/profile/8-ocelotjungle/" target="_blank">OcelotJungle</a> &mdash; администратор
+                <br />
+                <small>Автоматизация игрового процесса и нововведения</small>
+            </li>
+            <li>
+                <a href="http://forum.bbyaworld.com/index.php?/profile/13130-redteapot/" target="_blank">RedTeapot</a> &mdash; программист
+                <br />
+                <small>Работа с сайтом</small>
+            </li>
+            <hr />
+            <li>
+                <a href="http://forum.bbyaworld.com/index.php?/profile/32590-tichina/" target="_blank">tichina</a> &mdash; советник
+                <br />
+                <small>Поддержание порядка, разборки</small>
+            </li>
+            <hr />
+            <li>
+                <a href="http://forum.bbyaworld.com/index.php?/profile/6-lastlife/" target="_blank">LastLife</a> &mdash; ВРИО помощника администратора
+                <br />
+                <small>Работа с форумом</small>
+            </li>
+            <li>
+                <a href="http://forum.bbyaworld.com/index.php?/profile/10-newoldmax/" target="_blank">newoldmax</a> &mdash; ВРИО помощника администратора
+                <br />
+                <small>Консультант по web-технологиям</small>
+            </li>
+        </ul>
+    </div>
+
+    {% include 'components/footer.html' %}
+{% endblock %}
