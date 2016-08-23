@@ -39,6 +39,14 @@ $app->get('/newb_info[.php]', function($request, $response, $args) {
     ]);
 });
 
+$app->get('/contacts[.php]', function($request, $response, $args) {
+    global $players_online;
+
+    return $this->renderer->render($response, 'contacts.html', [
+        'players_online' => $players_online,
+    ]);
+});
+
 $app->get('/stats[.php]', function($request, $response, $args) {
     global $players_online;
 

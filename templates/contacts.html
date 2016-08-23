@@ -1,0 +1,31 @@
+{% set class = 'carousel-narrow' %}
+{% set title = 'Контакты' %}
+
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include 'components/header.html' %}
+
+    <div class="container content">
+        <h1>{{ title }}</h1>
+
+        <p>Как нас найти и куда податься, если форум не работает:</p>
+
+        <ul>
+            <li>Адрес основного сервера: <strong>play.bbyaworld.com</strong> (<i>164.132.15.179:25565</i>)</li>
+            <li>Сайт: <a href="http://bbyaworld.com" target="_blank">http://bbyaworld.com</a></li>
+            <li>Форум: <a href="http://forum.bbyaworld.com" target="_blank">http://forum.bbyaworld.com</a></li>
+            <li>Старый форум: <a href="http://mc.bbcity.ru" target="_blank">http://mc.bbcity.ru</a></li>
+            <li>YouTube: <a href="https://www.youtube.com/user/BByaMineCraftServer" target="_blank">BByaMineCraftServer</a></li>
+            <li>Facebook: <a href="https://www.facebook.com/groups/BByaMineCraftServer" target="_blank">BByaMineCraftServer</a></li>
+            <li>Twitter: <a href="https://twitter.com/BBya_World" target="_blank">@BBya_World</a></li>
+            <li>Instagram: <a href="http://instagram.com/bbyaworld" target="_blank">@bbyaworld</a></li>
+            <li>Steam: <a href="http://instagram.com/bbyaworld" target="_blank">BBya World</a></li>
+            <li>ВКонтакте: <a href="https://vk.com/bbyaworld" target="_blank">https://vk.com/bbyaworld</a></li>
+            <li>Skype: <a href="skype:bbyaworld?userinfo">bbyaworld</a></li>
+            <li>Email: <a href="mailto:info@bbyaworld.com">info@bbyaworld.com</a></li>
+        </ul>
+    </div>
+
+    {% include 'components/footer.html' %}
+{% endblock %}
