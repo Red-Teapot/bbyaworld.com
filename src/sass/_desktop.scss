@@ -152,6 +152,26 @@ $statusbar-height: 60px;
             transform: translateX(-50%) translateY(-50%);
         }
     }
+
+    .server-age {
+        display: block;
+        position: absolute;
+        color: #ffffff;
+        font-size: 50px;
+        top: 50%;
+        left: 50%;
+        width: auto;
+        height: auto;
+        margin-top: -35px;
+        transform: translateX(-50%) translateY(-50%);
+        text-align: center;
+        text-shadow: rgba(0, 0, 0, 0.6) 0 0 5px;
+        z-index: 2;
+
+        b {
+            font-size: 1.5em;
+        }
+    }
 }
 
 .statusbar {
