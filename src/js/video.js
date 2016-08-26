@@ -5,9 +5,9 @@ $(function() {
         var video = $(document.createElement('video'));
         video.hide();
         video.attr('playsinline', true);
-        video.attr('autoplay', true);
-        video.attr('muted', true);
-        video.attr('loop', true);
+        video.prop('autoplay', true);
+        video.prop('muted', true);
+        video.prop('loop', true);
 
         var source_webm = $(document.createElement('source'));
         source_webm.attr('src', '/assets/videos/bg_video.webm');
