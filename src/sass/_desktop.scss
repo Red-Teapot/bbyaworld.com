@@ -74,19 +74,6 @@ body {
 
 $statusbar-height: 60px;
 
-.social-likes {
-    position: absolute;
-    top: 70px;
-    left: 0;
-    z-index: 50;
-    width: 100%;
-    text-align: center;
-
-    div {
-        display: inline-block;
-    }
-}
-
 .carousel {
     $carousel-height: 100vh;
 
