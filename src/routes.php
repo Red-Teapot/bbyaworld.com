@@ -2,6 +2,7 @@
 
 include_once __DIR__ . '/logic/MCServerQuery.class.php';
 include_once __DIR__ . '/logic/OnlineStats.class.php';
+include_once __DIR__ . '/logic/PlayerRegionsAreas.class.php';
 
 $mc_server_query = new MCServerQuery(false);
 $players_online = $mc_server_query->getPlayers('play.bbyaworld.com', 25565, 5);
@@ -76,6 +77,32 @@ $app->get('/stats[.php]', function($request, $response, $args) {
     return $this->renderer->render($response, 'stats.html', [
         'players_online' => $players_online,
         'players_stats' => $playersPage,
+        'total_count' => $totalCount,
+        'current_page' => $page,
+    ]);
+});
+
+$app->get('/regions[.php]', function($request, $response, $args) {
+    global $players_online;
+
+    $areas = new PlayerRegionsAreas($this->db);
+    $totalCount = $areas->getTotalCount();
+
+    $params = $request->getQueryParams();
+    $page = isset($params['p']) ?
+        intval($params['p']) :
+        1;
+
+    if($page > ceil($totalCount / 50))
+        $page = ceil($totalCount / 50);
+    if($page < 1)
+        $page = 1;
+
+    $areasPage = $areas->getAreas($page);
+
+    return $this->renderer->render($response, 'region_areas.html', [
+        'players_online' => $players_online,
+        'areas' => $areasPage,
         'total_count' => $totalCount,
         'current_page' => $page,
     ]);
