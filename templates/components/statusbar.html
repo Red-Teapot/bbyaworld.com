@@ -1,24 +1,16 @@
 <div class="statusbar" id="statusbar">
     <div class="container">
-        <p class="status"><span class="nowrap" data-toggle="tooltip" data-placement="right" title="Адрес сервера">play.bbyaworld.com<span class="server-status {{ players_online == false ? 'off' : 'on' }}"></span></span></p>
+        <p class="status"><span class="nowrap" data-toggle="tooltip" data-placement="right" title="Адрес сервера">play.bbyaworld.com<span class="server-status" id="server-status-indicator"></span></span></p>
         <p class="play-button">
             <a href="http://forum.bbyaworld.com/index.php?/topic/2-bbya-world-informatciia-o-servere-i-pravila-igry/" class="btn btn-primary btn-lg">Хочу играть!</a>
         </p>
         <div class="dropup online-players">
             <button class="btn dropdown-toggle" type="button" id="playersDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Игроки онлайн<span class="badge">
-                {{ players_online|length }}
-                </span>
+                Игроки онлайн<span class="badge" id="server-players-count">?</span>
                 <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu" aria-labelledby="playersDropdown">
-                {% if players_online|length > 0 %}
-                    {% for player in players_online %}
-                        <li class="item"><img src="https://minotar.net/helm/{{ player }}/32" />{{ player }}</li>
-                    {% endfor %}
-                {% else %}
-                    <li class="item">Игроков нет</li>
-                {% endif %}
+            <ul class="dropdown-menu" aria-labelledby="playersDropdown" id="server-players">
+                <li class="item">Игроков нет</li>
             </ul>
         </div>
     </div>

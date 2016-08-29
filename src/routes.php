@@ -4,60 +4,33 @@ include_once __DIR__ . '/logic/MCServerQuery.class.php';
 include_once __DIR__ . '/logic/OnlineStats.class.php';
 include_once __DIR__ . '/logic/PlayerRegionsAreas.class.php';
 
-$mc_server_query = new MCServerQuery(false);
-$players_online = $mc_server_query->getPlayers('play.bbyaworld.com', 25565, 5);
-
-$app->get('/[index.php]', function ($request, $response, $args) {
-    global $players_online;
-
-    return $this->renderer->render($response, 'index.html', [
-        'players_online' => $players_online,
-    ]);
+$app->get('/[index.php]', function ($request, $response) {
+    return $this->renderer->render($response, 'index.html');
 });
 
-$app->get('/map[.php]', function($request, $response, $args) {
-    global $players_online;
-
+$app->get('/map[.php]', function($request, $response) {
     return $this->renderer->render($response, 'map.html', [
         'map_args' => $request->getUri()->getQuery(),
-        'players_online' => $players_online,
     ]);
 });
 
-$app->get('/rules[.php]', function($request, $response, $args) {
-    global $players_online;
-
-    return $this->renderer->render($response, 'rules.html', [
-        'players_online' => $players_online,
-    ]);
+$app->get('/rules[.php]', function($request, $response) {
+    return $this->renderer->render($response, 'rules.html');
 });
 
-$app->get('/newb_info[.php]', function($request, $response, $args) {
-    global $players_online;
-
-    return $this->renderer->render($response, 'newbie_info.html', [
-        'players_online' => $players_online,
-    ]);
+$app->get('/newb_info[.php]', function($request, $response) {
+    return $this->renderer->render($response, 'newbie_info.html');
 });
 
-$app->get('/contacts[.php]', function($request, $response, $args) {
-    global $players_online;
-
-    return $this->renderer->render($response, 'contacts.html', [
-        'players_online' => $players_online,
-    ]);
+$app->get('/contacts[.php]', function($request, $response) {
+    return $this->renderer->render($response, 'contacts.html');
 });
 
-$app->get('/staff_and_vacancies[.php]', function($request, $response, $args) {
-    global $players_online;
-
-    return $this->renderer->render($response, 'staff_and_vacancies.html', [
-        'players_online' => $players_online,
-    ]);
+$app->get('/staff_and_vacancies[.php]', function($request, $response) {
+    return $this->renderer->render($response, 'staff_and_vacancies.html');
 });
 
-$app->get('/stats[.php]', function($request, $response, $args) {
-    global $players_online;
+$app->get('/stats[.php]', function($request, $response) {
 
     $stats = new OnlineStats($this->db);
     $totalCount = $stats->getTotalCount();
@@ -75,15 +48,13 @@ $app->get('/stats[.php]', function($request, $response, $args) {
     $playersPage = $stats->getStats($page);
 
     return $this->renderer->render($response, 'stats.html', [
-        'players_online' => $players_online,
         'players_stats' => $playersPage,
         'total_count' => $totalCount,
         'current_page' => $page,
     ]);
 });
 
-$app->get('/regions[.php]', function($request, $response, $args) {
-    global $players_online;
+$app->get('/regions[.php]', function($request, $response) {
 
     $areas = new PlayerRegionsAreas($this->db);
     $totalCount = $areas->getTotalCount();
@@ -101,9 +72,22 @@ $app->get('/regions[.php]', function($request, $response, $args) {
     $areasPage = $areas->getAreas($page);
 
     return $this->renderer->render($response, 'region_areas.html', [
-        'players_online' => $players_online,
         'areas' => $areasPage,
         'total_count' => $totalCount,
         'current_page' => $page,
     ]);
+});
+
+$app->get('/server-state', function($request, $response) {
+
+    $mc_server_query = new MCServerQuery(false);
+    $players_online = $mc_server_query->getPlayers('play.bbyaworld.com', 25565, 5);
+
+    $response = $response->withHeader('Content-Type', 'application/json; charset=utf-8');
+    $response = $response->withJson([
+        'status' => $players_online ? true : false,
+        'players' => $players_online ? $players_online : [],
+    ]);
+
+    return $response;
 });
