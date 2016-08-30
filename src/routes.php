@@ -1,8 +1,8 @@
 <?php
 
-include_once __DIR__ . '/logic/MCServerQuery.class.php';
 include_once __DIR__ . '/logic/OnlineStats.class.php';
 include_once __DIR__ . '/logic/PlayerRegionsAreas.class.php';
+include_once __DIR__ . '/logic/ServerStatus.class.php';
 
 $app->get('/[index.php]', function ($request, $response) {
     return $this->renderer->render($response, 'index.html');
@@ -80,8 +80,7 @@ $app->get('/regions[.php]', function($request, $response) {
 
 $app->get('/server-state', function($request, $response) {
 
-    $mc_server_query = new MCServerQuery(false);
-    $players_online = $mc_server_query->getPlayers('play.bbyaworld.com', 25565, 5);
+    $players_online = ServerStatus::getStatus('play.bbyaworld.com', 25565);
 
     $response = $response->withHeader('Content-Type', 'application/json; charset=utf-8');
     $response = $response->withJson([
