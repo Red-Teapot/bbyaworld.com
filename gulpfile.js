@@ -24,6 +24,7 @@ var c = {
     thirdpartyCSSDir: 'thirdparty/css/',
     thirdpartyJSDir: 'thirdparty/js/',
 
+    sassDir: 'src/sass/',
     sassMainFile: 'src/sass/main.scss',
     tempMainCSS: '3main.css',
 
