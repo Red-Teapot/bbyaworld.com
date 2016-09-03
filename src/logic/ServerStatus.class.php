@@ -8,6 +8,7 @@ class ServerStatus {
     const CACHE_TIME = 300; // 5 minutes
 
     public static function getStatus($address, $port) {
+
         $players_online = Cache::fetch('server_status');
 
         if($players_online) {
