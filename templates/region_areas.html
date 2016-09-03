@@ -14,8 +14,8 @@
             <thead>
                 <tr>
                     <td>#</td>
-                    <td>Территория</td>
-                    <td>Площадь</td>
+                    <td><a href="{{ (sort == 'label' and sort_dir == 'asc') ? '?sort=label\&dir=desc' : '?sort=label\&dir=asc' }}">Территория {% if sort == 'label' %}<span class="caret {{ sort_dir == 'desc' ? 'caret-up' : '' }}"></span>{% endif %}</a></td>
+                    <td><a href="{{ (sort == 'area' and sort_dir == 'asc') ? '?sort=area\&dir=desc' : '?sort=area\&dir=asc' }}">Площадь {% if sort == 'area' %}<span class="caret {{ sort_dir == 'desc' ? 'caret-up' : '' }}"></span>{% endif %}</a></td>
                 </tr>
             </thead>
             <tbody>

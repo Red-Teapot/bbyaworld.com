@@ -9,6 +9,11 @@ body {
     color: #fff;
 }
 
+.caret-up {
+    border-top: none;
+    border-bottom: 4px solid #fff;
+}
+
 $navbar-height: 60px;
 
 @media screen and (min-width: 769px) {
@@ -652,6 +657,10 @@ footer {
             color: #fff;
             text-align: center;
             font-weight: bold;
+
+            a {
+                color: #fff;
+            }
         }
         tbody {
             tr {

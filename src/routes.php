@@ -69,12 +69,17 @@ $app->get('/regions[.php]', function($request, $response) {
     if($page < 1)
         $page = 1;
 
-    $areasPage = $areas->getAreas($page);
+    $sort = $request->getQueryParam('sort', 'label');
+    $sort_dir = $request->getQueryParam('dir', 'asc');
+
+    $areasPage = $areas->getAreas($page, 50, $sort, $sort_dir);
 
     return $this->renderer->render($response, 'region_areas.html', [
         'areas' => $areasPage,
         'total_count' => $totalCount,
         'current_page' => $page,
+        'sort' => $sort,
+        'sort_dir' => $sort_dir,
     ]);
 });
 
