@@ -1,12 +1,21 @@
 <?php
 $container = $app->getContainer();
 
+function query($args) {
+    $params = array();
+    foreach($args as $key => $value) {
+        $params[] = urlencode($key) . '=' . urlencode($value);
+    }
+    return '?' . implode('&', $params);
+}
+
 // view renderer
 $container['renderer'] = function ($c) {
     $renderer = new \Slim\Views\Twig($c['settings']['renderer']['template_path'], [
         //'cache' => '../template-cache',
         'cache' => $c['settings']['renderer']['cache'],
     ]);
+    $renderer->getEnvironment()->addFunction('query', new Twig_Function_Function('query'));
     $renderer->addExtension(new \Slim\Views\TwigExtension(
         $c['router'],
         $c['request']->getUri()
@@ -33,4 +42,3 @@ $container['db'] = function($c) {
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     return $pdo;
 };
-

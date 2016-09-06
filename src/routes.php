@@ -81,7 +81,7 @@ $app->get('/regions[.php]', function($request, $response) {
         'sort' => $sort,
         'sort_dir' => $sort_dir,
     ]);
-});
+})->setName('regions');
 
 $app->get('/server-state', function($request, $response) {
 
