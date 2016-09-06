@@ -21,7 +21,7 @@ class Cache {
         ];
 
         mkdir($dir, 0777, true);
-        $file = fopen($dir . strval($key) . '.tmp', 'w');
+        $file = fopen($dir . strval($key) . '.json.tmp', 'w');
         fwrite($file, json_encode($data));
         fclose($file);
 
@@ -33,7 +33,7 @@ class Cache {
         if(!$dir)
             return false;
 
-        $data = json_decode(file_get_contents($dir . strval($key) . '.tmp'), true);
+        $data = json_decode(file_get_contents($dir . strval($key) . '.json.tmp'), true);
 
         if($data['expires'] < time()) {
             return false;
