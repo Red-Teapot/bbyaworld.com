@@ -1,22 +1,39 @@
 <?php
 
 class Cache {
+    private static $_config = false;
+
+    private static function getConfig() {
+        if(static::$_config)
+            return static::$_config;
+
+        static::$_config = require(__DIR__ . '/../../../config/cache.php');
+    }
+
     public static function store($key, $value, $ttl) {
+        $dir = static::getConfig()['dir'];
+        if(!$dir)
+            return false;
+
         $data = [
             'expires' => time() + $ttl,
             'data' => $value,
         ];
 
-        mkdir(__DIR__ . '/../../runtime/cache/');
-        $file = fopen(__DIR__ . '/../../runtime/cache/' . strval($key) . '.tmp', 'w');
+        mkdir($dir, 0777, true);
+        $file = fopen($dir . strval($key) . '.tmp', 'w');
         fwrite($file, json_encode($data));
         fclose($file);
 
-        return false;
+        return true;
     }
 
     public static function fetch($key) {
-        $data = json_decode(file_get_contents(__DIR__ . '/../../runtime/cache/' . strval($key) . '.tmp'), true);
+        $dir = static::getConfig()['dir'];
+        if(!$dir)
+            return false;
+
+        $data = json_decode(file_get_contents($dir . strval($key) . '.tmp'), true);
 
         if($data['expires'] < time()) {
             return false;

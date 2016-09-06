@@ -30,7 +30,7 @@ $web = [
     ],
 
     // Server state cache settings
-    'server-state-cache' => [
+    'cache' => [
         'dir' => __DIR__ . '/../runtime/cache/',
     ],
 ];
