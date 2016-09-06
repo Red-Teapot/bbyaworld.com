@@ -55,14 +55,14 @@ $navbar-height: 60px;
         .navbar-nav a {
             @include navbar-link;
             padding-top: 21.1px;
-            padding-bottom: 20px;
+            padding-bottom: 19px;
             outline: 0;
 
             &:hover, &:active, &:focus {
                 border: none;
                 background: none;
                 border-bottom: 1px solid #fff;
-                padding-bottom: 19px;
+                padding-bottom: 18px;
             }
         }
         .dropdown.open > .dropdown-toggle {
