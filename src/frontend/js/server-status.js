@@ -1,5 +1,5 @@
 $(function() {
-    $.get('/server-status', null, function(data) {
+    $.get('/game-server-status', null, function(data) {
         $('#server-status-indicator').addClass(data['status'] ? 'on' : 'off');
 
         $('#server-players > *').remove();

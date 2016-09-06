@@ -86,7 +86,7 @@ $app->get('/regions', function($request, $response) {
     ]);
 });
 
-$app->get('/server-status', function($request, $response) {
+$app->get('/game-server-status', function($request, $response) {
 
     $status = ServerStatus::getStatus('play.bbyaworld.com', 25565);
 
