@@ -2,7 +2,7 @@
 
 include_once __DIR__ . '/logic/OnlineStats.class.php';
 include_once __DIR__ . '/logic/PlayerRegionsAreas.class.php';
-include_once __DIR__ . '/logic/ServerStatus.class.php';
+include_once __DIR__ . '/logic/server_status/ServerStatus.class.php';
 
 $app->get('/[index.php]', function ($request, $response) {
     return $this->renderer->render($response, 'index.html');
@@ -85,13 +85,10 @@ $app->get('/regions[.php]', function($request, $response) {
 
 $app->get('/server-state', function($request, $response) {
 
-    $players_online = ServerStatus::getStatus('play.bbyaworld.com', 25565);
+    $status = ServerStatus::getStatus('play.bbyaworld.com', 25565);
 
     $response = $response->withHeader('Content-Type', 'application/json; charset=utf-8');
-    $response = $response->withJson([
-        'status' => $players_online ? true : false,
-        'players' => $players_online ? $players_online : [],
-    ]);
+    $response = $response->withJson($status);
 
     return $response;
 });

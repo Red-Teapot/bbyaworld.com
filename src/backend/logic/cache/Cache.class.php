@@ -7,7 +7,9 @@ class Cache {
         if(static::$_config)
             return static::$_config;
 
-        static::$_config = require(__DIR__ . '/../../../config/cache.php');
+        static::$_config = require(__DIR__ . '/../../../../config/cache.php');
+
+        return static::$_config;
     }
 
     public static function store($key, $value, $ttl) {
@@ -20,8 +22,10 @@ class Cache {
             'data' => $value,
         ];
 
+        $filename = $dir . strval($key) . '.json.tmp';
+
         mkdir($dir, 0777, true);
-        $file = fopen($dir . strval($key) . '.json.tmp', 'w');
+        $file = fopen($filename, 'w');
         fwrite($file, json_encode($data));
         fclose($file);
 

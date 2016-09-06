@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../../../../vendor/autoload.php';
 
-require_once(__DIR__ . '/../../../logic/MCServerQuery.class.php');
+require_once(__DIR__ . '/../../logic/server_status/ServerStatus.class.php');
 
 $settings = require(__DIR__ . '/../../../../config/player_online_stats/config.php');
 
@@ -14,12 +14,11 @@ $log->info("Script started");
 
 $log->info("Getting player list");
 
-$serverQuery = new MCServerQuery($log);
+$status = ServerStatus::getStatus($settings["server"]["address"], $settings["server"]["port"], false);
+$players = $status['players'];
 
-$log->info("Created server query");
-$log->info("Getting players");
-
-$players = $serverQuery->getPlayers($settings["server"]["address"], $settings["server"]["port"], 5);
+if($status['cached'])
+    echo 'Cached :(' . PHP_EOL;
 
 if(!$players) {
     $log->error("Could not get players");
