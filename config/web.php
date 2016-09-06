@@ -18,7 +18,7 @@ $web = [
 
     // Renderer settings
     'renderer' => [
-        'template_path' => __DIR__ . '/../templates/',
+        'template_path' => __DIR__ . '/../src/templates/',
         'cache' => __DIR__ . '/../runtime/template-cache/',
     ],
 
