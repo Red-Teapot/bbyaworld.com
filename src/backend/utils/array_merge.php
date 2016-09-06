@@ -1,6 +1,5 @@
 <?php
 
-/* Utility function */
 /**
 * array_merge_recursive does indeed merge arrays, but it converts values with duplicate
 * keys to arrays rather than overwriting the value in the first array with the duplicate
@@ -40,49 +39,3 @@ function array_merge_recursive_distinct(array &$array1, array $array2)
 
     return $merged;
 }
-
-// Default configuration, aimed at production use
-$settings = [
-    'settings' => [
-        'displayErrorDetails' => false,
-        'addContentLengthHeader' => true,
-        'routerCacheFile' => __DIR__ . '/../runtime/router-cache.tmp',
-
-        // DB settings
-        /*
-        Example:
-
-        'db' => [
-            'host' => 'localhost',
-            'user' => 'user',
-            'pass' => 'pass',
-            'dbname' => 'database_name',
-        ],
-
-        */
-
-        'db' => false,
-
-        // Renderer settings
-        'renderer' => [
-            'template_path' => __DIR__ . '/../templates/',
-            'cache' => __DIR__ . '/../runtime/template-cache/',
-        ],
-
-        // Monolog settings
-        'logger' => [
-            'name' => 'slim-app',
-            'path' => __DIR__ . '/../runtime/logs/app.log',
-            'level' => \Monolog\Logger::WARNING,
-        ],
-
-        'server-state-cache' => [
-            'dir' => __DIR__ . '/../runtime/cache/',
-        ],
-    ],
-];
-
-// Import and merge local configuration
-$settings = array_merge_recursive_distinct($settings, require(__DIR__ . '/settings-local.php'));
-
-return $settings;

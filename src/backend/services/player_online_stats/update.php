@@ -2,22 +2,17 @@
 
 <?php
 
-require __DIR__ . '/../../../vendor/autoload.php';
+require __DIR__ . '/../../../../vendor/autoload.php';
 
-require_once(__DIR__ . '/../../logic/MCServerQuery.class.php');
+require_once(__DIR__ . '/../../../logic/MCServerQuery.class.php');
 
-$settings = require(__DIR__ . '/settings.php');
+$settings = require(__DIR__ . '/../../../../config/player_online_stats/config.php');
 
 $log = new Monolog\Logger($settings['logger']['name']);
 $log->pushProcessor(new Monolog\Processor\UidProcessor());
 $log->pushHandler(new Monolog\Handler\RotatingFileHandler($settings['logger']['path'], 7, $settings['logger']['level']));
 
 $log->info("Script started");
-
-define('TIMEZONE', 'Europe/Moscow');
-date_default_timezone_set(TIMEZONE);
-
-$log->debug("Set timezone to MSK");
 
 $log->info("Getting player list");
 
