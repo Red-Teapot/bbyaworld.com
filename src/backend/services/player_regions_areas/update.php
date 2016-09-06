@@ -1,10 +1,8 @@
-#!/usr/bin/php -q
-
 <?php
 
-require __DIR__ . '/../../../vendor/autoload.php';
+require __DIR__ . '/../../../../vendor/autoload.php';
 
-$settings = require(__DIR__ . '/settings.php');
+$settings = require(__DIR__ . '/../../../../config/player_regions_areas/config.php');
 
 $log = new Monolog\Logger($settings['logger']['name']);
 $log->pushProcessor(new Monolog\Processor\UidProcessor());

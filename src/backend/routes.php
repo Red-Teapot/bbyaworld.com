@@ -2,7 +2,7 @@
 
 include_once __DIR__ . '/logic/OnlineStats.class.php';
 include_once __DIR__ . '/logic/PlayerRegionsAreas.class.php';
-include_once __DIR__ . '/logic/ServerStatus.class.php';
+include_once __DIR__ . '/logic/server_status/ServerStatus.class.php';
 
 $app->get('/[index.php]', function ($request, $response) {
     return $this->renderer->render($response, 'index.html');
@@ -21,12 +21,15 @@ $app->get('/rules[.php]', function($request, $response) {
 $app->get('/newb_info[.php]', function($request, $response) {
     return $this->renderer->render($response, 'newbie_info.html');
 });
+$app->get('/newbie-info', function($request, $response) {
+    return $this->renderer->render($response, 'newbie_info.html');
+});
 
-$app->get('/contacts[.php]', function($request, $response) {
+$app->get('/contacts', function($request, $response) {
     return $this->renderer->render($response, 'contacts.html');
 });
 
-$app->get('/staff_and_vacancies[.php]', function($request, $response) {
+$app->get('/staff-and-vacancies', function($request, $response) {
     return $this->renderer->render($response, 'staff_and_vacancies.html');
 });
 
@@ -54,7 +57,7 @@ $app->get('/stats[.php]', function($request, $response) {
     ]);
 });
 
-$app->get('/regions[.php]', function($request, $response) {
+$app->get('/regions', function($request, $response) {
 
     $areas = new PlayerRegionsAreas($this->db);
     $totalCount = $areas->getTotalCount();
@@ -81,17 +84,14 @@ $app->get('/regions[.php]', function($request, $response) {
         'sort' => $sort,
         'sort_dir' => $sort_dir,
     ]);
-})->setName('regions');
+});
 
-$app->get('/server-state', function($request, $response) {
+$app->get('/server-status', function($request, $response) {
 
-    $players_online = ServerStatus::getStatus('play.bbyaworld.com', 25565);
+    $status = ServerStatus::getStatus('play.bbyaworld.com', 25565);
 
     $response = $response->withHeader('Content-Type', 'application/json; charset=utf-8');
-    $response = $response->withJson([
-        'status' => $players_online ? true : false,
-        'players' => $players_online ? $players_online : [],
-    ]);
+    $response = $response->withJson($status);
 
     return $response;
 });

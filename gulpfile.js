@@ -24,14 +24,14 @@ var c = {
     thirdpartyCSSDir: 'thirdparty/css/',
     thirdpartyJSDir: 'thirdparty/js/',
 
-    sassDir: 'src/sass/',
-    sassMainFile: 'src/sass/main.scss',
+    sassDir: 'src/frontend/sass/',
+    sassMainFile: 'src/frontend/sass/main.scss',
     tempMainCSS: '3main.css',
 
-    jsDir: 'src/js/',
+    jsDir: 'src/frontend/js/',
     tempMainJS: '3main.js',
 
-    srcDir: 'src/',
+    srcDir: 'src/frontend/',
     templateDir: 'templates/',
 
     resultCSS: 'main.css',

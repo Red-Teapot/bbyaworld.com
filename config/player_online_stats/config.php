@@ -3,7 +3,7 @@
 return [
     'logger' => [
         'name' => 'OnlinePlayerStats',
-        'path' => __DIR__ . '/../../../runtime/logs/app.log',
+        'path' => __DIR__ . '/../../runtime/logs/app.log',
         'level' => \Monolog\Logger::WARNING,
     ],
 
@@ -12,7 +12,7 @@ return [
         'port' => 25565,
     ],
 
-    'db' => (require(__DIR__ . '/../../settings-local.php'))['settings']['db'],
+    'db' => require(__DIR__ . '/../db.php'),
 
     'updateInterval' => 2, // Minutes
     'mojangApiUrl' => 'https://api.mojang.com/profiles/minecraft',

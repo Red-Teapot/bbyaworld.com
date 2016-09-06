@@ -1,12 +1,10 @@
-#!/usr/bin/php -q
-
 <?php
 
-require __DIR__ . '/../../../vendor/autoload.php';
+require __DIR__ . '/../../../../vendor/autoload.php';
 
-require_once(__DIR__ . '/../../logic/MCServerQuery.class.php');
+require_once(__DIR__ . '/../../logic/server_status/ServerStatus.class.php');
 
-$settings = require(__DIR__ . '/settings.php');
+$settings = require(__DIR__ . '/../../../../config/player_online_stats/config.php');
 
 $log = new Monolog\Logger($settings['logger']['name']);
 $log->pushProcessor(new Monolog\Processor\UidProcessor());
@@ -14,19 +12,13 @@ $log->pushHandler(new Monolog\Handler\RotatingFileHandler($settings['logger']['p
 
 $log->info("Script started");
 
-define('TIMEZONE', 'Europe/Moscow');
-date_default_timezone_set(TIMEZONE);
-
-$log->debug("Set timezone to MSK");
-
 $log->info("Getting player list");
 
-$serverQuery = new MCServerQuery($log);
+$status = ServerStatus::getStatus($settings["server"]["address"], $settings["server"]["port"], false);
+$players = $status['players'];
 
-$log->info("Created server query");
-$log->info("Getting players");
-
-$players = $serverQuery->getPlayers($settings["server"]["address"], $settings["server"]["port"], 5);
+if($status['cached'])
+    echo 'Cached :(' . PHP_EOL;
 
 if(!$players) {
     $log->error("Could not get players");
