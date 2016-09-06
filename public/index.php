@@ -9,13 +9,13 @@ $settings = require __DIR__ . '/../config/web.php';
 $app = new \Slim\App($settings);
 
 // Set up dependencies
-require __DIR__ . '/../src/dependencies.php';
+require __DIR__ . '/../src/backend/dependencies.php';
 
 // Register middleware
-require __DIR__ . '/../src/middleware.php';
+require __DIR__ . '/../src/backend/middleware.php';
 
 // Register routes
-require __DIR__ . '/../src/routes.php';
+require __DIR__ . '/../src/backend/routes.php';
 
 // Run app
 $app->run();
