@@ -1,44 +1,55 @@
-# Description
+# Описание
 
-This is BByaWorld Minecraft server website source code.
+В этом репозитории находится исходный код веб-сайта сервера Minecraft BBya World.
 
-This project is built using Slim PHP Framework, SASS preprocessor, Twig template engine and Gulp task runner.
+Проект собран с помощью Slim PHP Framework, перпроцессора SASS, шаблонизатора Twig и системы сборки Gulp.
 
-# Installation
+# Установка и сборка
 
-## Prerequisites
+## Требования
 
 1. NodeJS
 2. Composer
-3. gulp-cli installed globally
-4. Bower installed globally
+3. Глобальный gulp-cli
+4. Глобальный Bower
 
-## Installation process
+## Процесс установки
 
-1. Clone this repo
-2. Copy `composer.phar` to repo root folder
-3. Install Composer dependencies:
+1. Склонировать данный репозиторий
+2. Скачать `composer.phar` в корневую папку репозитория
+3. Установить зависимости Composer:
+
    ```
    php composer.phar install
    ```
-   Or (to not install dev dependencies):
+
+   Или (без dev-зависимостей):
+
    ```
    php composer.phar intall --no-dev
    ```
-4. Install npm requirements:
+
+4. Установить зависимости npm:
+
    ```
    npm install
    ```
-5. Make `/runtime` and `/temp` dirs with `777` rights (Gulp needs rw access to `/temp`, webserver needs rw access to `/runtime`)
-6. Install Bower dependencies:
+
+5. Создать папки `/runtime` и `/temp` с правами `777` (Gulp требует доступ на запись/чтение в `/temp`, веб-сервер требует доступ на запись/чтение в `/runtime`)
+6. Установить зависимости Bower:
+
    ```
    bower install
    ```
-7. Build Gulp assets:
+
+7. Собрать ассеты Gulp:
+
    ```
    gulp
    ```
-8. Create database and necessary tables:
+
+8. Создать БД и необходимые таблицы:
+
    ```sql
    CREATE TABLE `online_stats` (
    `uuid` varchar(32) NOT NULL,
@@ -47,34 +58,44 @@ This project is built using Slim PHP Framework, SASS preprocessor, Twig template
    PRIMARY KEY (`uuid`),
    UNIQUE KEY `nickname` (`nickname`)
    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+   CREATE TABLE `regions` (
+      `name` varchar(128) NOT NULL,
+      `label` varchar(128) NOT NULL,
+      `area` float NOT NULL DEFAULT '-1',
+      PRIMARY KEY (`name`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
    ```
-9. Create `/src/settings-local.php` file using following template:
+
+9. Создать `/src/settings-local.php` на основе приведенного шаблона:
+
    ```php
    <?php
 
    return [
        'settings' => [
-           'displayErrorDetails' => true, // Set it to false on production
+           'displayErrorDetails' => true, // Необходимо выключить на продакшне
 
            'db' => [
-               'host' => 'localhost', // Database host
-               'user' => 'user', // Database user
-               'pass' => 'pass', // Database password
-               'dbname' => 'database', // Database name
+               'host' => 'localhost', // Хост БД
+               'user' => 'user', // Пользователь БД
+               'pass' => 'pass', // Пароль пользователя БД
+               'dbname' => 'database', // Имя БД
            ],
 
            'renderer' => [
-               // Set it to true to enable renderer teplate cache
-               // Useful in production
+               // Можно установить в true для кеширования шаблонов
+               // Полезно на продакшне
                'cache' => false,
            ],
        ],
    ];
    ```
-10. Configure your webserver to point to `/public/` directory and enable rewrite.
-11. Put `bg_video.mp4` and `bg_video.webm` to `/public/assets/videos` folder.
 
-# License
+10. Настроить корневую директорию веб-сервера в `/public/` и включить rewrite.
+11. Скачать `bg_video.mp4` и `bg_video.webm` в `/public/assets/videos`.
 
-The content of this project itself is licensed under the [Creative Commons Attribution 3.0 license](http://creativecommons.org/licenses/by/3.0/us/deed.en_US), 
+# Лицензия
+
+The content of this project itself is licensed under the [Creative Commons Attribution 3.0 license](http://creativecommons.org/licenses/by/3.0/us/deed.en_US),
 and the underlying source code used to format and display that content is licensed under the [MIT license](http://opensource.org/licenses/mit-license.php).
