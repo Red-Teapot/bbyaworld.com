@@ -11,7 +11,7 @@ class OnlineStats {
         $page = intval($page);
         $perPage = intval($perPage);
         $sql = "SELECT `nickname`, `time` FROM `online_stats`
-                WHERE `time` >= 60
+                WHERE `time` >= 600
                 ORDER BY `time` DESC
                 LIMIT " . ($page - 1) * $perPage . ", " . $perPage . ";";
         $stmt = $this->db->query($sql);
@@ -21,7 +21,7 @@ class OnlineStats {
     }
 
     public function getTotalCount() {
-        $sql = "SELECT COUNT(1) FROM `online_stats` WHERE `time` >= 60;";
+        $sql = "SELECT COUNT(1) FROM `online_stats` WHERE `time` >= 600;";
         $stmt = $this->db->query($sql);
         $result = $stmt->fetch();
 
