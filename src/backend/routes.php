@@ -91,6 +91,7 @@ $app->get('/game-server-status', function($request, $response) {
     $status = ServerStatus::getStatus('play.bbyaworld.com', 25565);
 
     $response = $response->withHeader('Content-Type', 'application/json; charset=utf-8');
+    $response = $response->withHeader('Access-Control-Allow-Origin', 'http://forum.bbyaworld.com');
     $response = $response->withJson($status);
 
     return $response;
