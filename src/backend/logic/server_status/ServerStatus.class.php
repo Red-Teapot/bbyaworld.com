@@ -5,7 +5,7 @@ include_once __DIR__ . '/../cache/Cache.class.php';
 
 class ServerStatus {
 
-    const CACHE_TIME = 300; // 5 minutes
+    const CACHE_TIME = 5; // 5 seconds
 
     public static function getStatus($address, $port, $cache = true) {
         $result = [];
