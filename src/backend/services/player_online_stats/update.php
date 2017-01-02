@@ -4,6 +4,8 @@ require __DIR__ . '/../../../../vendor/autoload.php';
 
 require_once(__DIR__ . '/../../logic/server_status/ServerStatus.class.php');
 
+require_once(__DIR__ . '/../../logic/cache/Cache.class.php');
+
 $settings = require(__DIR__ . '/../../../../config/player_online_stats/config.php');
 
 $log = new Monolog\Logger($settings['logger']['name']);
@@ -83,3 +85,9 @@ foreach($players as $name) {
 $log->info("Closing connections");
 
 $log->info("Done");
+
+$data = [];
+$data['time'] = time();
+$data['server_status'] = $status;
+
+Cache::store('last_online_stats_launch', $data, 365 * 24 * 60 * 60);

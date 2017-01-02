@@ -1,6 +1,7 @@
 <?php
 
 include_once __DIR__ . '/logic/OnlineStats.class.php';
+include_once __DIR__ . '/logic/cache/Cache.class.php';
 include_once __DIR__ . '/logic/PlayerRegionsAreas.class.php';
 include_once __DIR__ . '/logic/server_status/ServerStatus.class.php';
 
@@ -50,10 +51,15 @@ $app->get('/stats[.php]', function($request, $response) {
 
     $playersPage = $stats->getStats($page);
 
+    $latestUpdate = Cache::fetch('last_online_stats_launch');
+    if($latestUpdate)
+        $latestUpdate = $latestUpdate['time'];
+
     return $this->renderer->render($response, 'stats.html', [
         'players_stats' => $playersPage,
         'total_count' => $totalCount,
         'current_page' => $page,
+        'latest_update' => $latestUpdate,
     ]);
 });
 
