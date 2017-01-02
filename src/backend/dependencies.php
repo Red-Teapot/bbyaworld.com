@@ -9,6 +9,20 @@ function query($args) {
     return '?' . implode('&', $params);
 }
 
+function assets_mtime($type) {
+    switch($type) {
+        case 'js':
+            return filemtime(__DIR__ . '/../../public/assets/main.js');
+            break;
+        case 'css':
+            return filemtime(__DIR__ . '/../../public/assets/main.css');
+            break;
+        default:
+            return -1;
+            break;
+    }
+}
+
 // view renderer
 $container['renderer'] = function ($c) {
     $renderer = new \Slim\Views\Twig($c['settings']['renderer']['template_path'], [
@@ -16,6 +30,7 @@ $container['renderer'] = function ($c) {
         'cache' => $c['settings']['renderer']['cache'],
     ]);
     $renderer->getEnvironment()->addFunction('query', new Twig_Function_Function('query'));
+    $renderer->getEnvironment()->addFunction('assets_mtime', new Twig_Function_Function('assets_mtime'));
     $renderer->addExtension(new \Slim\Views\TwigExtension(
         $c['router'],
         $c['request']->getUri()
