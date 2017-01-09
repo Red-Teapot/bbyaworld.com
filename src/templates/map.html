@@ -6,7 +6,7 @@
 {% block content %}
     {% include 'components/navbar.html' %}
 
-    <iframe class="map-frame" id="map-frame" src="http://play.bbyaworld.com:28565/?{{ map_args }}"></iframe>
+    <iframe class="map-frame" id="map-frame" src="/map-redir?{{ map_args }}"></iframe>
 
     {% include 'components/statusbar.html' %}
 {% endblock %}
