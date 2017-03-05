@@ -15,12 +15,6 @@ $app->get('/map[.php]', function($request, $response) {
     ]);
 });
 
-$app->get('/map-redir', function($request, $response) {
-    return $this->renderer->render($response, 'map_redir.html', [
-        'map_args' => $request->getUri()->getQuery(),
-    ]);
-});
-
 $app->get('/rules[.php]', function($request, $response) {
     return $this->renderer->render($response, 'rules.html');
 });

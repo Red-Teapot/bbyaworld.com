@@ -1,12 +1,15 @@
+{% set class = 'carousel-narrow' %}
+
 {% extends 'base.html' %}
 
-{% set class = 'map' %}
 {% set title = 'Карта' %}
 
 {% block content %}
-    {% include 'components/navbar.html' %}
+    {% include 'components/header.html' %}
 
-    <iframe class="map-frame" id="map-frame" src="/map-redir?{{ map_args }}"></iframe>
-
-    {% include 'components/statusbar.html' %}
+    <div class="container content">
+        <p>Встраивание карты в сайт не работает в связи с техническими проблемами.</p>
+        <p>Карта доступна по адресу <a href="http://play.bbyaworld.com:28565/">http://play.bbyaworld.com:28565/</a>.</p>
+        <p>Приносим свои извинения.</p>
+    </div>
 {% endblock %}
