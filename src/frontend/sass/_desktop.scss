@@ -27,31 +27,12 @@ $navbar-height: 60px;
         height: $navbar-height;
 
         .navbar-brand {
-            font-weight: bold;
-            font-size: 18pt;
-            color: #fff;
             outline: 0;
             height: $navbar-height;
-            padding: 5px 15px 5px 0;
-
-            &:hover, &:active {
-                border: none;
-                border-bottom: 1px solid #fff;
-                padding-bottom: 4px;
-            }
-
-            > svg {
-                display: inline-block;
-                float: left;
-                height: 50px;
-                width: 194px;
-            }
-
-            > span {
-                display: inline-block;
-                padding: 15px 0 15px 10px;
-            }
+            padding: 0;
+            padding-right: 10px;
         }
+        
         .navbar-nav a {
             @include navbar-link;
             padding-top: 21.1px;
