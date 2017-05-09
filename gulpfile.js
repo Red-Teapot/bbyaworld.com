@@ -153,5 +153,5 @@ gulp.task('watch', function() {
     gulp.watch([c.sassDir + '*.*', c.sassDir + '**/*.*'], ['updateCSS']);
     gulp.watch([c.jsDir + '*.*', c.jsDir + '**/*.*'], ['updateJS']);
     gulp.watch([c.srcDir + '*.php', c.srcDir + '**/*.php',
-                c.templateDir + '*.html', c.templateDir + '**/*.phtml',]).on('change', browserSync.reload);
+                c.templateDir + '*.html', c.templateDir + '*.twig', c.templateDir + '**/*.phtml',]).on('change', browserSync.reload);
 });

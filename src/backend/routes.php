@@ -6,32 +6,32 @@ include_once __DIR__ . '/logic/PlayerRegionsAreas.class.php';
 include_once __DIR__ . '/logic/server_status/ServerStatus.class.php';
 
 $app->get('/[index.php]', function ($request, $response) {
-    return $this->renderer->render($response, 'index.html');
+    return $this->renderer->render($response, 'index.twig');
 });
 
 $app->get('/map[.php]', function($request, $response) {
-    return $this->renderer->render($response, 'map.html', [
+    return $this->renderer->render($response, 'map.twig', [
         'map_args' => $request->getUri()->getQuery(),
     ]);
 });
 
 $app->get('/rules[.php]', function($request, $response) {
-    return $this->renderer->render($response, 'rules.html');
+    return $this->renderer->render($response, 'rules.twig');
 });
 
 $app->get('/newb_info[.php]', function($request, $response) {
-    return $this->renderer->render($response, 'newbie_info.html');
+    return $this->renderer->render($response, 'newbie_info.twig');
 });
 $app->get('/newbie-info', function($request, $response) {
-    return $this->renderer->render($response, 'newbie_info.html');
+    return $this->renderer->render($response, 'newbie_info.twig');
 });
 
 $app->get('/contacts', function($request, $response) {
-    return $this->renderer->render($response, 'contacts.html');
+    return $this->renderer->render($response, 'contacts.twig');
 });
 
 $app->get('/staff-and-vacancies', function($request, $response) {
-    return $this->renderer->render($response, 'staff_and_vacancies.html');
+    return $this->renderer->render($response, 'staff_and_vacancies.twig');
 });
 
 $app->get('/stats[.php]', function($request, $response) {
@@ -55,7 +55,7 @@ $app->get('/stats[.php]', function($request, $response) {
     if($latestUpdate)
         $latestUpdate = $latestUpdate['time'];
 
-    return $this->renderer->render($response, 'stats.html', [
+    return $this->renderer->render($response, 'stats.twig', [
         'players_stats' => $playersPage,
         'total_count' => $totalCount,
         'current_page' => $page,
@@ -83,7 +83,7 @@ $app->get('/regions', function($request, $response) {
 
     $areasPage = $areas->getAreas($page, 50, $sort, $sort_dir);
 
-    return $this->renderer->render($response, 'region_areas.html', [
+    return $this->renderer->render($response, 'region_areas.twig', [
         'areas' => $areasPage,
         'total_count' => $totalCount,
         'current_page' => $page,

@@ -1,10 +1,10 @@
 {% set class = 'carousel-narrow' %}
 {% set title = 'Состав и вакансии' %}
 
-{% extends 'base.html' %}
+{% extends 'base.twig' %}
 
 {% block content %}
-    {% include 'components/header.html' %}
+    {% include 'components/header.twig' %}
 
     <div class="container content">
         <h1>{{ title }}</h1>
@@ -83,5 +83,5 @@
         </ul>
     </div>
 
-    {% include 'components/footer.html' %}
+    {% include 'components/footer.twig' %}
 {% endblock %}

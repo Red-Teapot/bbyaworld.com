@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base.twig' %}
 
 {% set class = 'carousel-narrow' %}
 {% set title = 'Статистика' %}
@@ -6,7 +6,7 @@
 {% set pages_total = (total_count / 50)|round(0, 'ceil') %}
 
 {% block content %}
-    {% include 'components/header.html' %}
+    {% include 'components/header.twig' %}
 
     <div class="container content">
         <h1>Статистика</h1>
@@ -61,5 +61,5 @@
         </div>
     </div>
 
-    {% include 'components/footer.html' %}
+    {% include 'components/footer.twig' %}
 {% endblock %}

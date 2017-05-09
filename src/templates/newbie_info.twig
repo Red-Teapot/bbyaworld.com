@@ -1,10 +1,10 @@
 {% set class = 'carousel-narrow' %}
 {% set title = 'Советы начинающим игрокам' %}
 
-{% extends 'base.html' %}
+{% extends 'base.twig' %}
 
 {% block content %}
-    {% include 'components/header.html' %}
+    {% include 'components/header.twig' %}
 
     <div class="container content">
         <h1>{{ title }}</h1>
@@ -71,5 +71,5 @@
         <small>Автор текста &mdash; <a href="http://forum.bbyaworld.com/index.php?/profile/33185-ahnaton/">Ahnaton</a></small>
     </div>
 
-    {% include 'components/footer.html' %}
+    {% include 'components/footer.twig' %}
 {% endblock %}

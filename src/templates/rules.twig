@@ -1,10 +1,10 @@
 {% set class = 'carousel-narrow' %}
 {% set title = 'Свод законов или правила игры на нашем сервере' %}
 
-{% extends 'base.html' %}
+{% extends 'base.twig' %}
 
 {% block content %}
-    {% include 'components/header.html' %}
+    {% include 'components/header.twig' %}
 
     <div class="container content rules">
         <h1>{{ title }}</h1>
@@ -286,7 +286,7 @@
         </div>
     </div>
 
-    {% include 'components/footer.html' %}
+    {% include 'components/footer.twig' %}
 {% endblock %}
 {% block after_html %}
 <script>
