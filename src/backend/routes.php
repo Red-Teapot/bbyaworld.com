@@ -75,7 +75,8 @@ $app->get('/regions', function($request, $response) {
     $areasPage = $areas->getAreas($sort, $sort_dir);
 
     return $this->renderer->render($response, 'region_areas.twig', [
-        'list' => $areasPage,
+        'list' => $areasPage['grouped'],
+        'misc' => $areasPage['misc'],
         'sort' => $sort,
         'sort_dir' => $sort_dir,
     ]);

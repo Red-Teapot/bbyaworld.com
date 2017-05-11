@@ -11,7 +11,7 @@ class PlayerRegionsAreas {
         $owner_order = (strtolower($order) == 'nickname' ? '`owner_nickname`' : 'SUM(`area`)');
         $order_dir = (strtolower($order_dir) == 'asc' ? 'ASC' : 'DESC');
 
-        $sql = "SELECT `label`, `area`, `owner_nickname`, `area_number` FROM `regions` ORDER BY `area_number` ASC;";
+        $sql = "SELECT `label`, `area`, `owner_nickname` FROM `regions` ORDER BY `name` ASC;";
         $stmt = $this->db->query($sql);
         $areas = $stmt->fetchAll();
         
@@ -19,25 +19,35 @@ class PlayerRegionsAreas {
                 GROUP BY `owner_nickname` ORDER BY " . $owner_order . " " . $order_dir . ";";
         $stmt = $this->db->query($sql);
         $owners = $stmt->fetchAll();
-        $result = [];
+        $grouped = [];
         
         foreach($owners as $owner) {
-            $result[$owner['owner_nickname']] = [
+            $grouped[$owner['owner_nickname']] = [
                 'total_area' => floatval($owner['SUM(`area`)']),
                 'areas' => [],
             ];
         }
         
+        $misc = [];
+        
         foreach($areas as $area) {
-            $result[$area['owner_nickname']]['areas'][] = [
+            $elem = [
                 'name' => $area['name'],
                 'label' => $area['label'],
                 'area' => $area['area'],
-                'area_number' => intval($area['area_number']),
             ];
+            
+            if(array_key_exists($area['owner_nickname'], $grouped)) {
+                $grouped[$area['owner_nickname']]['areas'][] = $elem;
+            } else {
+                $misc[] = $elem;
+            }
         }
 
-        return $result;
+        return [
+            'grouped' => $grouped,
+            'misc' => $misc,
+        ];
     }
 
     public function getTotalCount() {

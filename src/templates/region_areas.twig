@@ -31,7 +31,11 @@
                 </tr>
             </thead>
             <tbody>
-                {% if list|length > 0 %}
+                {% if list|length <= 0 and misc|length <= 0 %}
+                    <tr>
+                        <td class="empty" colspan="3">Тут пусто</td>
+                    </tr>
+                {% else %}
                     {% for nickname, data in list %}
                         {% set list_index = loop.index0 %}
                         <tr class="collapse-toggle {{ list_index is even ? 'dark' : '' }}" id="area-collapse-{{ list_index }}">
@@ -48,10 +52,14 @@
                             </tr>
                         {% endfor %}
                     {% endfor %}
-                {% else %}
-                    <tr>
-                        <td class="empty" colspan="3">Тут пусто</td>
-                    </tr>
+                    
+                    {% for area in misc %}
+                        <tr>
+                            <td class="index"><span class="caret area-caret-right"></span></td>
+                            <td>{{ area.label }}</td>
+                            <td class="right">{{ (area.area)|number_format(1, ',', ' ') }}</td>
+                        </tr>
+                    {% endfor %}
                 {% endif %}
             </tbody>
         </table>
