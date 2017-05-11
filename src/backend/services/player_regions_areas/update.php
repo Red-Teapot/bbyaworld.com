@@ -84,7 +84,6 @@ foreach($regions as $name => $region) {
         'label' => $label,
         'area' => $area,
         'owner_nickname' => $owner_nickname,
-        'area_number' => $area_number,
     ];
 }
 
@@ -100,7 +99,7 @@ $sql = 'ALTER TABLE `regions` AUTO_INCREMENT = 1;';
 $pdo->exec($sql);
 
 // Fill new table data
-$sql = 'INSERT INTO `regions`(`name`, `label`, `area`, `owner_nickname`, `area_number`) VALUES (:name, :label, :area, :owner_nickname, :area_number)';
+$sql = 'INSERT INTO `regions`(`name`, `label`, `area`, `owner_nickname`) VALUES (:name, :label, :area, :owner_nickname)';
 $stmt = $pdo->prepare($sql);
 
 foreach($result as $region) {
@@ -109,7 +108,6 @@ foreach($result as $region) {
         ':label' => $region['label'],
         ':area' => $region['area'],
         ':owner_nickname' => $region['owner_nickname'],
-        ':area_number' => $region['area_number'],
     ]);
 }
 
