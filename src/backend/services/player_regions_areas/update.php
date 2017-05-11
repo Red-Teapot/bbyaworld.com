@@ -51,6 +51,14 @@ $result = array();
 foreach($regions as $name => $region) {
     $label = $region['label'];
     $area = 0;
+    
+    $owner_nickname = '';
+    $last_underscore = strrpos($name, '_');
+    $owner_nickname = substr($name, 0, $last_underscore);
+    $area_number = substr($name, $last_underscore + 1);
+    if(!is_numeric($area_number)) {
+        $area_number = -1;
+    }
 
     $x = $region['x'];
     $z = $region['z'];
@@ -75,6 +83,8 @@ foreach($regions as $name => $region) {
         'name' => $name,
         'label' => $label,
         'area' => $area,
+        'owner_nickname' => $owner_nickname,
+        'area_number' => $area_number,
     ];
 }
 
@@ -90,7 +100,7 @@ $sql = 'ALTER TABLE `regions` AUTO_INCREMENT = 1;';
 $pdo->exec($sql);
 
 // Fill new table data
-$sql = 'INSERT INTO `regions`(`name`, `label`, `area`) VALUES (:name, :label, :area)';
+$sql = 'INSERT INTO `regions`(`name`, `label`, `area`, `owner_nickname`, `area_number`) VALUES (:name, :label, :area, :owner_nickname, :area_number)';
 $stmt = $pdo->prepare($sql);
 
 foreach($result as $region) {
@@ -98,6 +108,8 @@ foreach($result as $region) {
         ':name' => $region['name'],
         ':label' => $region['label'],
         ':area' => $region['area'],
+        ':owner_nickname' => $region['owner_nickname'],
+        ':area_number' => $region['area_number'],
     ]);
 }
 

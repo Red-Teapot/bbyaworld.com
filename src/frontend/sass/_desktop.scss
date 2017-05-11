@@ -641,6 +641,7 @@ footer {
 
             a {
                 color: #fff;
+                white-space: nowrap;
             }
         }
         tbody {
@@ -694,5 +695,68 @@ footer {
         text-align: center;
         font-size: 12pt;
         color: rgba(0, 0, 0, 0.7);
+    }
+    
+    .area-table {
+        max-width: 100%;
+        width: 600px;
+    }
+    
+    table.stats.area-table tbody tr {
+        &:nth-child(even) {
+            background-color: #fff;
+            
+            &:hover {
+                background-color: darken(#fff, 20%);
+            }
+        }
+        
+        &.dark {
+            background-color: darken(#fff, 10%);
+        }
+        
+        &.collapse-toggle {
+            cursor: pointer;
+        }
+        
+        &.child {
+            background-color: darken(#fff, 5%);
+            
+            &.dark {
+                background-color: darken(#fff, 8%);
+            }
+            
+            &:hover {
+                background-color: darken(#fff, 20%);
+            }
+            
+            &.first {
+                box-shadow: inset 0 7.5px 5px -5px rgba(0, 0, 0, 0.25);
+            }
+            
+            &.last {
+                box-shadow: inset 0 -7.5px 5px -5px rgba(0, 0, 0, 0.25);
+            }
+            
+            &.first.last {
+                box-shadow: inset 0 7.5px 5px -5px rgba(0, 0, 0, 0.25),
+                            inset 0 -7.5px 5px -5px rgba(0, 0, 0, 0.25);
+            }
+            
+        }
+    }
+    
+    .area-caret-right {
+        border-left: 4px solid #000;
+        border-right: 4px solid transparent;
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+    }
+
+    .area-caret-down {
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 4px solid #000;
+        border-bottom: 4px solid transparent;
     }
 }

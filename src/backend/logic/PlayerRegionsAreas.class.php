@@ -7,18 +7,35 @@ class PlayerRegionsAreas {
         $this->db = $db;
     }
 
-    public function getAreas($page = 1, $perPage = 50, $order = 'label', $order_dir = 'ASC') {
-        $page = intval($page);
-        $perPage = intval($perPage);
-
-        $order = (strtolower($order) == 'label' ? 'label' : 'area');
+    public function getAreas($order = 'nickname', $order_dir = 'asc') {
+        $owner_order = (strtolower($order) == 'nickname' ? '`owner_nickname`' : 'SUM(`area`)');
         $order_dir = (strtolower($order_dir) == 'asc' ? 'ASC' : 'DESC');
 
-        $sql = "SELECT `label`, `area` FROM `regions`
-                ORDER BY `" . $order . "` " . $order_dir . "
-                LIMIT " . ($page - 1) * $perPage . ", " . $perPage . ";";
+        $sql = "SELECT `label`, `area`, `owner_nickname`, `area_number` FROM `regions` ORDER BY `area_number` ASC;";
         $stmt = $this->db->query($sql);
-        $result = $stmt->fetchAll();
+        $areas = $stmt->fetchAll();
+        
+        $sql = "SELECT `owner_nickname`, SUM(`area`) FROM `regions`
+                GROUP BY `owner_nickname` ORDER BY " . $owner_order . " " . $order_dir . ";";
+        $stmt = $this->db->query($sql);
+        $owners = $stmt->fetchAll();
+        $result = [];
+        
+        foreach($owners as $owner) {
+            $result[$owner['owner_nickname']] = [
+                'total_area' => floatval($owner['SUM(`area`)']),
+                'areas' => [],
+            ];
+        }
+        
+        foreach($areas as $area) {
+            $result[$area['owner_nickname']]['areas'][] = [
+                'name' => $area['name'],
+                'label' => $area['label'],
+                'area' => $area['area'],
+                'area_number' => intval($area['area_number']),
+            ];
+        }
 
         return $result;
     }

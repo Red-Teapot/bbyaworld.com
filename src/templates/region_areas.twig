@@ -3,39 +3,50 @@
 {% set class = 'carousel-narrow' %}
 {% set title = 'Территории игроков' %}
 
-{% set pages_total = (total_count / 50)|round(0, 'ceil') %}
-
 {% block content %}
     {% include 'components/header.twig' %}
 
     <div class="container content">
         <h1>{{ title }}</h1>
-        <table class="stats">
+        <table class="stats area-table">
             <thead>
                 <tr>
-                    <td>#</td>
+                    <td></td>
                     <td>
-                        <a href="{{ (sort == 'label' and sort_dir == 'asc') ? query({'sort':'label', 'dir':'desc', 'p': current_page}) : query({'sort':'label', 'dir':'asc', 'p': current_page}) }}">
+                        <a href="{{ (sort == 'nickname' and sort_dir == 'asc') ? query({'sort':'nickname', 'dir':'desc'}) : query({'sort':'nickname', 'dir':'asc'}) }}">
                             Территория
-                            {% if sort == 'label' %}<span class="caret {{ sort_dir == 'desc' ? 'caret-up' : '' }}"></span>{% endif %}
+                            {% if sort == 'nickname' %}
+                                <span class="caret {{ sort_dir == 'desc' ? 'caret-up'}}"></span>
+                            {% endif %}
                         </a>
                     </td>
                     <td>
                         <a href="{{ (sort == 'area' and sort_dir == 'asc') ? query({'sort':'area', 'dir':'desc', 'p': current_page}) : query({'sort':'area', 'dir':'asc', 'p': current_page}) }}">
                             Площадь
-                            {% if sort == 'area' %}<span class="caret {{ sort_dir == 'desc' ? 'caret-up' : '' }}"></span>{% endif %}
+                            {% if sort == 'area' %}
+                                <span class="caret {{ sort_dir == 'desc' ? 'caret-up'}}"></span>
+                            {% endif %}
                         </a>
                     </td>
                 </tr>
             </thead>
             <tbody>
-                {% if areas|length > 0 %}
-                    {% for area in areas %}
-                        <tr>
-                            <td class="index">{{ loop.index0 + 1 + (current_page - 1) * 50 }}</td>
-                            <td>{{ area.label }}</td>
-                            <td class="right">{{ (area.area)|number_format(1, ',', ' ') }}</td>
+                {% if list|length > 0 %}
+                    {% for nickname, data in list %}
+                        {% set list_index = loop.index0 %}
+                        <tr class="collapse-toggle {{ list_index is even ? 'dark' : '' }}" id="area-collapse-{{ list_index }}">
+                            <td class="index"><span class="caret area-caret-right"></span></td>
+                            {% set label = (nickname == 'social') ? 'Государственные' : nickname %}
+                            <td>{{ label }}</td>
+                            <td class="right">{{ (data.total_area)|number_format(1, ',', ' ') }}</td>
                         </tr>
+                        {% for area in data.areas %}
+                            <tr class="collapse child area-collapse-{{ list_index }} {{ loop.index0 == 0 ? 'first' }} {{ loop.last ? 'last' }} {{ loop.index0 is even ? 'dark' }}">
+                                <td></td>
+                                <td>{{ area.label }}</td>
+                                <td class="right">{{ (area.area)|number_format(1, ',', ' ') }}</td>
+                            </tr>
+                        {% endfor %}
                     {% endfor %}
                 {% else %}
                     <tr>
@@ -44,29 +55,23 @@
                 {% endif %}
             </tbody>
         </table>
-        <div class="pager">
-            {% if current_page > 1 %}
-                <a href="{{ query({'p': 1, 'sort': sort, 'dir': sort_dir}) }}" title="Первая страница">&laquo;</a>
-            {% endif %}
-            {% if current_page > 2 %}
-                <a href="{{ query({'p': current_page - 2, 'sort': sort, 'dir': sort_dir}) }}">{{ current_page - 2 }}</a>
-            {% endif %}
-            {% if current_page > 1 %}
-                <a href="{{ query({'p': current_page - 1, 'sort': sort, 'dir': sort_dir}) }}">{{ current_page - 1 }}</a>
-            {% endif %}
-            <span class="page current">{{ current_page }}</span>
-            {% if current_page < pages_total %}
-                <a href="{{ query({'p': current_page + 1, 'sort': sort, 'dir': sort_dir}) }}">{{ current_page + 1 }}</a>
-            {% endif %}
-            {% if current_page < pages_total - 1 %}
-                <a href="{{ query({'p': current_page + 2, 'sort': sort, 'dir': sort_dir}) }}">{{ current_page + 2 }}</a>
-            {% endif %}
-            {% if current_page < pages_total %}
-                <a href="{{ query({'p': pages_total, 'sort': sort, 'dir': sort_dir}) }}" title="Последняя страница">&raquo;</a>
-            {% endif %}
-            <p class="minor">Страница {{ current_page }} из {{ pages_total }}</p>
-        </div>
     </div>
 
     {% include 'components/footer.twig' %}
+    
+    <script>
+        (function() {
+            
+            function onLoad() {
+                $('.collapse-toggle').click(function() {
+                    var self = $(this);
+                    var childrenSelector = '.' + self.attr('id');
+                    self.find('.caret').toggleClass('area-caret-right').toggleClass('area-caret-down');
+                    $(childrenSelector).toggleClass('collapse');
+                });
+            };
+            
+            window.addEventListener('load', onLoad);
+        }());
+    </script>
 {% endblock %}

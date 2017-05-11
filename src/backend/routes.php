@@ -66,27 +66,16 @@ $app->get('/stats[.php]', function($request, $response) {
 $app->get('/regions', function($request, $response) {
 
     $areas = new PlayerRegionsAreas($this->db);
-    $totalCount = $areas->getTotalCount();
 
     $params = $request->getQueryParams();
-    $page = isset($params['p']) ?
-        intval($params['p']) :
-        1;
 
-    if($page > ceil($totalCount / 50))
-        $page = ceil($totalCount / 50);
-    if($page < 1)
-        $page = 1;
+    $sort = $request->getQueryParam('sort', 'area');
+    $sort_dir = $request->getQueryParam('dir', 'desc');
 
-    $sort = $request->getQueryParam('sort', 'label');
-    $sort_dir = $request->getQueryParam('dir', 'asc');
-
-    $areasPage = $areas->getAreas($page, 50, $sort, $sort_dir);
+    $areasPage = $areas->getAreas($sort, $sort_dir);
 
     return $this->renderer->render($response, 'region_areas.twig', [
-        'areas' => $areasPage,
-        'total_count' => $totalCount,
-        'current_page' => $page,
+        'list' => $areasPage,
         'sort' => $sort,
         'sort_dir' => $sort_dir,
     ]);
