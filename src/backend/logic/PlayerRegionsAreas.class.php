@@ -9,9 +9,11 @@ class PlayerRegionsAreas {
 
     public function getAreas($order = 'nickname', $order_dir = 'asc') {
         $owner_order = (strtolower($order) == 'nickname' ? '`owner_nickname`' : 'SUM(`area`)');
+        $area_order = (strtolower($order) == 'nickname' ? '`label`' : '`area`');
         $order_dir = (strtolower($order_dir) == 'asc' ? 'ASC' : 'DESC');
 
-        $sql = "SELECT `label`, `area`, `owner_nickname` FROM `regions` ORDER BY `name` ASC;";
+        $sql = "SELECT `label`, `area`, `owner_nickname` FROM `regions`
+                ORDER BY " . $area_order . " " . $order_dir . ";";
         $stmt = $this->db->query($sql);
         $areas = $stmt->fetchAll();
         
