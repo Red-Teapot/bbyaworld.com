@@ -30,9 +30,9 @@ $app->get('/contacts', function($request, $response) {
     return $this->renderer->render($response, 'contacts.twig');
 });
 
-$app->get('/staff-and-vacancies', function($request, $response) {
+/*$app->get('/staff-and-vacancies', function($request, $response) {
     return $this->renderer->render($response, 'staff_and_vacancies.twig');
-});
+});*/
 
 $app->get('/stats[.php]', function($request, $response) {
 
