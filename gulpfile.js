@@ -5,7 +5,7 @@ var bowerMain = require('bower-main');
 var uglify = require('gulp-uglify');
 var cleanCSS = require('gulp-clean-css');
 var concat = require('gulp-concat');
-var sass = require('gulp-ruby-sass');
+var sass = require('gulp-sass');
 var del = require('del');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
@@ -77,7 +77,8 @@ gulp.task('copy-bootstrap-font', function() {
 });
 
 gulp.task('sass', function() {
-    return sass(c.sassMainFile, {style: 'compressed'})
+    return gulp.src(c.sassMainFile)
+        .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(concat(c.tempMainCSS))
         .pipe(gulp.dest(c.tempCSSDir));
 });
