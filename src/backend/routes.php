@@ -3,6 +3,7 @@
 include_once __DIR__ . '/logic/OnlineStats.class.php';
 include_once __DIR__ . '/logic/cache/Cache.class.php';
 include_once __DIR__ . '/logic/PlayerRegionsAreas.class.php';
+include_once __DIR__ . '/logic/ClansCells.class.php';
 include_once __DIR__ . '/logic/server_status/ServerStatus.class.php';
 
 $app->get('/[index.php]', function ($request, $response) {
@@ -79,6 +80,45 @@ $app->get('/regions', function($request, $response) {
         'misc' => $areasPage['misc'],
         'sort' => $sort,
         'sort_dir' => $sort_dir,
+    ]);
+});
+
+$app->get('/clans', function($request, $response) {
+
+    $clans = new ClansCells($this->db);
+
+    $list = $clans->getList();
+
+    $council_list = [];
+    $other_list = [];
+    $last_cell_count = -1;
+    $last_order = -1;
+
+    foreach($list as $clan) {
+        if($clan['is_in_council'] > 0) {
+            if($last_cell_count < 0) {
+                $last_cell_count = $clan['cell_count'];
+                $last_order = $clan['order'];
+            } else {
+                if($last_cell_count != $clan['cell_count']) {
+                    $last_order++;
+                    $last_cell_count = $clan['cell_count'];
+                }
+
+                $clan['order'] = $last_order;
+            }
+
+            $council_list[] = $clan;
+        } else {
+            $last_order++;
+            $clan['order'] = $last_order;
+            $other_list[] = $clan;
+        }
+    }
+
+    return $this->renderer->render($response, 'clans_cells.twig', [
+        'council_list' => $council_list,
+        'other_list' => $other_list,
     ]);
 });
 

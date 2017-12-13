@@ -52,20 +52,24 @@
 
    ```sql
    CREATE TABLE `online_stats` (
-   `uuid` varchar(32) NOT NULL,
-   `nickname` varchar(63) NOT NULL,
-   `time` int(11) NOT NULL DEFAULT '0',
-   PRIMARY KEY (`uuid`),
-   UNIQUE KEY `nickname` (`nickname`)
+   `uuid` varchar(32) NOT NULL PRIMARY KEY,
+   `nickname` varchar(63) NOT NULL UNIQUE,
+   `time` int(11) NOT NULL DEFAULT '0'
    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
    CREATE TABLE `regions` (
-      `name` varchar(128) NOT NULL,
+      `name` varchar(128) NOT NULL PRIMARY KEY,
       `label` varchar(128) NOT NULL,
       `owner_nickname` varchar(128) NOT NULL,
-      `area` float NOT NULL DEFAULT '-1',
-      PRIMARY KEY (`name`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+      `area` float NOT NULL DEFAULT '-1'
+   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+   CREATE TABLE `clans` (
+      `order` int unsigned NOT NULL PRIMARY KEY,
+      `name` varchar(128) NOT NULL,
+      `cell_count` int unsigned NOT NULL DEFAULT 0,
+      `is_in_council` tinyint unsigned NOT NULL DEFAULT 0
+   ) ENGINE='InnoDB' COLLATE 'utf8_general_ci';
    ```
 
 9. Создать `src/settings-local.php` на основе приведенного шаблона:

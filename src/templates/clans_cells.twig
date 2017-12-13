@@ -1,0 +1,75 @@
+{% extends 'base.twig' %}
+
+{% set class = 'carousel-narrow' %}
+{% set title = 'Кланы' %}
+
+{% block content %}
+    {% include 'components/header.twig' %}
+
+    <div class="container content">
+        <h1>{{ title }}</h1>
+        <h2>Совет кланов</h2>
+        <table class="stats">
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>
+                        Клан
+                    </td>
+                    <td>
+                        Соты
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                {% if council_list|length <= 0 %}
+                    <tr>
+                        <td class="empty" colspan="3">Тут пусто</td>
+                    </tr>
+                {% else %}
+                    {% for row in council_list %}
+                        {% set list_index = loop.index0 %}
+                        <tr>
+                            <td class="index">{{ row['order'] + 1 }}</td>
+                            <td>{{ row['name'] }}</td>
+                            <td class="right">{{ row['cell_count'] }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+
+        <h2>Остальные кланы</h2>
+        <table class="stats">
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>
+                        Клан
+                    </td>
+                    <td>
+                        Соты
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                {% if other_list|length <= 0 %}
+                    <tr>
+                        <td class="empty" colspan="3">Тут пусто</td>
+                    </tr>
+                {% else %}
+                    {% for row in other_list %}
+                        {% set list_index = loop.index0 %}
+                        <tr>
+                            <td class="index">{{ row['order'] + 1 }}</td>
+                            <td>{{ row['name'] }}</td>
+                            <td class="right">{{ row['cell_count'] }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    {% include 'components/footer.twig' %}
+{% endblock %}
