@@ -4,7 +4,7 @@ return [
     'logger' => [
         'name' => 'ClansCells',
         'path' => __DIR__ . '/../../runtime/logs/clans_cells.log',
-        'level' => \Monolog\Logger::DEBUG,
+        'level' => \Monolog\Logger::WARNING,
     ],
 
     'db' => require(__DIR__ . '/../db.php'),

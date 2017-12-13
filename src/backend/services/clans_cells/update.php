@@ -8,10 +8,6 @@ $log = new Monolog\Logger($settings['logger']['name']);
 $log->pushProcessor(new Monolog\Processor\UidProcessor());
 $log->pushHandler(new Monolog\Handler\RotatingFileHandler($settings['logger']['path'], 7, $settings['logger']['level']));
 
-
-$log->pushHandler(new Monolog\Handler\ErrorLogHandler());
-
-
 $log->info('Script started');
 
 try {
