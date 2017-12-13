@@ -1,4 +1,4 @@
-#!/opt/alt/php70/usr/bin/php -q
+#!php -q
 
 <?php
 
