@@ -91,27 +91,11 @@ $app->get('/clans', function($request, $response) {
 
     $council_list = [];
     $other_list = [];
-    $last_cell_count = -1;
-    $last_order = -1;
 
     foreach($list as $clan) {
         if($clan['is_in_council'] > 0) {
-            if($last_cell_count < 0) {
-                $last_cell_count = $clan['cell_count'];
-                $last_order = $clan['order'];
-            } else {
-                if($last_cell_count != $clan['cell_count']) {
-                    $last_order++;
-                    $last_cell_count = $clan['cell_count'];
-                }
-
-                $clan['order'] = $last_order;
-            }
-
             $council_list[] = $clan;
         } else {
-            $last_order++;
-            $clan['order'] = $last_order;
             $other_list[] = $clan;
         }
     }
