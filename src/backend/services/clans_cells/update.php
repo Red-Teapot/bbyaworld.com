@@ -93,26 +93,21 @@ foreach($clans as $name => $cell_count) {
     $i++;
 }
 
-$cell_counts = [];
+for($i = 0; $i < min([count($rows), 5]); $i++) {
+    $rows[$i]['is_in_council'] = true;
+}
 
-for($i = 0; $i < count($rows); $i++) {
-    $row = $rows[$i];
+if(count($rows) >= 5) {
+    $last_clan_cell_count = $rows[4]['cell_count'];
 
-    if(count($cell_counts) < 5) {
-        if(in_array($rows[$i]['cell_count'], $cell_counts)) {
-            $row['is_in_council'] = true;
-        } else {
-            $row['is_in_council'] = true;
-            $cell_counts[] = $row['cell_count'];
-        }
-    } else {
-        if(in_array($rows[$i]['cell_count'], $cell_counts)) {
-            $row['is_in_council'] = true;
+    for($i = 5; $i < count($rows); $i++) {
+        if($rows[$i]['cell_count'] == $last_clan_cell_count) {
+            $rows[$i]['is_in_council'] = true;
         }
     }
-
-    $rows[$i] = $row;
 }
+
+var_dump($rows);
 
 $log->info('Extracted clan cell counts');
 $log->info('Saving results in DB');
