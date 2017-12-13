@@ -9,6 +9,5 @@ return [
 
     'db' => require(__DIR__ . '/../db.php'),
 
-    //'regions_file_url' => 'http://play.bbyaworld.com:28565/tiles/_markers_/marker_world.json',
-    'regions_file_url' => 'http://localhost/marker_world.json',
+    'regions_file_url' => 'http://play.bbyaworld.com:28565/tiles/_markers_/marker_world.json',
 ];
