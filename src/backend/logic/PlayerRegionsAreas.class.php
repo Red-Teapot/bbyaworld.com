@@ -12,7 +12,7 @@ class PlayerRegionsAreas {
         $area_order = (strtolower($order) == 'nickname' ? '`label`' : '`area`');
         $order_dir = (strtolower($order_dir) == 'asc' ? 'ASC' : 'DESC');
 
-        $sql = "SELECT `label`, `area`, `owner_nickname` FROM `regions`
+        $sql = "SELECT `name`, `label`, `area`, `owner_nickname` FROM `regions`
                 ORDER BY " . $area_order . " " . $order_dir . ";";
         $stmt = $this->db->query($sql);
         $areas = $stmt->fetchAll();
@@ -36,6 +36,7 @@ class PlayerRegionsAreas {
             $elem = [
                 'name' => $area['name'],
                 'label' => $area['label'],
+                'owner_nickname' => $area['owner_nickname'],
                 'area' => $area['area'],
             ];
             

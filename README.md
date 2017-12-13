@@ -62,6 +62,7 @@
    CREATE TABLE `regions` (
       `name` varchar(128) NOT NULL,
       `label` varchar(128) NOT NULL,
+      `owner_nickname` varchar(128) NOT NULL,
       `area` float NOT NULL DEFAULT '-1',
       PRIMARY KEY (`name`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
