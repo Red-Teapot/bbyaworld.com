@@ -107,8 +107,6 @@ if(count($rows) >= 5) {
     }
 }
 
-var_dump($rows);
-
 $log->info('Extracted clan cell counts');
 $log->info('Saving results in DB');
 
