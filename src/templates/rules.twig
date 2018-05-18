@@ -291,7 +291,7 @@
 {% block after_html %}
 <script>
     // Scroll to top of item when it is opened
-    $(function () {
+    window.onload = function() {
         var isAffix = $(document).width() > 768;
         $('#accordion').on('shown.bs.collapse', function (e) {
             var myEl = $(this).find('.collapse.in').prev();
@@ -299,6 +299,6 @@
                 scrollTop: $(myEl).offset().top - 5 - (isAffix ? 60 : 0)
             }, 200);
         });
-    });
+    };
 </script>
 {% endblock %}
