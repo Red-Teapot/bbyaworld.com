@@ -47,7 +47,7 @@ try {
 
 $log->info('Downloaded data is correct JSON');
 
-$cells = $regions_data['sets']['Clans']['areas'];
+$cells = $regions_data['sets']['Clans2']['areas'];
 
 if(!$cells) {
     echo("\$cells is null!\n");
