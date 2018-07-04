@@ -29,9 +29,25 @@ curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10);
 curl_setopt($curl, CURLOPT_TIMEOUT, 15);
 $regions_data_raw = curl_exec($curl);
-curl_close($curl);
 
-$log->info('Downloaded data: ' . strlen($regions_data_raw) . ' bytes');
+$http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+$log->debug('Downloaded data', [
+    'code' => $http_code,
+    'length' => strlen($regions_data_raw),
+    'data' => $regions_data_raw
+]);
+
+if(curl_errno($curl) || $http_code != 200) {
+    $log->critical('Could not download regions file!', [
+        'curl_errno' => curl_errno($curl),
+        'http_code' => $http_code
+    ]);
+    
+    die();
+}
+
+curl_close($curl);
 
 if(strlen($regions_data_raw) <= 0) {
     $log->critical('Got empty data response!');
